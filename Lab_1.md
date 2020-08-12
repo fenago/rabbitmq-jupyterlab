@@ -19,6 +19,18 @@ Run following command in the terminal to start rabbitmq server:
 `rabbitmqctl status`
 
 #### RabbitMQ UI
+
+Run following command in the terminal one by one to create rabbitmq user and allow UI access:
+
+```
+rabbitmqctl add_user fenago fenago
+
+rabbitmqctl set_user_tags fenago administrator
+
+rabbitmqctl set_permissions -p / fenago ".*" ".*" ".*"
+```
+
+
 `<host-ip>:<port>:15672`
 
 **Username:** fenago
