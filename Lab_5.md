@@ -15,7 +15,10 @@ All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
 
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab5_python`
 
-To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+**Note:** 
+- Terminal is already running. You can also open new terminal by clicking:
+`File` > `New` > `Terminal`.
+- To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
 Run following command to move into python dssource files directory:
 
