@@ -1,3 +1,5 @@
+<img align="right" src="./logo-small.png">
+
 
 Introduction
 ------------
@@ -9,11 +11,6 @@ This tutorial assumes RabbitMQ is
 localhost on standard port (5672). In case you use a different host,
 port or credentials, connections settings would require adjusting.
 
-### Where to get help
-
-If you're having trouble going through this tutorial you can [contact
-us](https://groups.google.com/forum/#!forum/rabbitmq-users) through the
-mailing list.
 
 RabbitMQ is a message broker: it accepts and forwards messages. You can
 think about it as a post office: when you put the mail that you want

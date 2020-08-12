@@ -1,3 +1,4 @@
+<img align="right" src="./logo-small.png">
 
 
 Publish/Subscribe
@@ -11,12 +12,6 @@ This tutorial assumes RabbitMQ is
 [installed](https://www.rabbitmq.com/download.html) and running on
 localhost on standard port (5672). In case you use a different host,
 port or credentials, connections settings would require adjusting.
-
-### Where to get help
-
-If you're having trouble going through this tutorial you can [contact
-us](https://groups.google.com/forum/#!forum/rabbitmq-users) through the
-mailing list.
 
 ### Prerequisites
 
