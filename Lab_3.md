@@ -13,11 +13,18 @@ This tutorial assumes RabbitMQ is
 localhost on standard port (5672). In case you use a different host,
 port or credentials, connections settings would require adjusting.
 
-### Prerequisites
+#### Lab Environment
+All packages have been installed. There is no requirement for any setup.
 
-As with other Python tutorials, we will use the
-[Pika](https://pypi.python.org/pypi/pika) RabbitMQ client [version
-1.0.0](https://pika.readthedocs.io/en/stable/).
+All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab3_python`
+
+To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command to move into python dssource files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
 ### What This Tutorial Focuses On
 
@@ -66,7 +73,7 @@ appended to a particular queue? Should it be appended to many queues? Or
 should it get discarded. The rules for that are defined by the *exchange
 type*.
 
-![](./3_files/exchanges.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//exchanges.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; X [label="X",
@@ -166,7 +173,7 @@ in the [guide on queues](https://www.rabbitmq.com/queues.html).
 Bindings
 --------
 
-![](./3_files/bindings.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//bindings.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; X [label="X",
@@ -196,7 +203,7 @@ From now on the logs exchange will append messages to our queue.
 Putting it all together
 -----------------------
 
-![](./3_files/python-three-overall.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-three-overall.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P [label="P", fillcolor="\#00ffff"]; X [label="X",

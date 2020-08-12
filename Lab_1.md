@@ -11,6 +11,34 @@ This tutorial assumes RabbitMQ is
 localhost on standard port (5672). In case you use a different host,
 port or credentials, connections settings would require adjusting.
 
+#### Start RabbitMQ Server
+Run following command in ther terminal to start rabbitmq server:
+`service rabbitmq-server start`
+
+`rabbitmqctl status`
+
+#### RabbitMQ UI
+`<host-ip>:<port>:15672`
+
+**Username:** fenago
+**Password:** fenago
+
+
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+All packages have been installed. There is no requirement for any setup.
+
+All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab1_python`
+
+To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command to move into python dssource files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
 RabbitMQ is a message broker: it accepts and forwards messages. You can
 think about it as a post office: when you put the mail that you want
@@ -27,7 +55,7 @@ RabbitMQ, and messaging in general, uses some jargon.
 -   *Producing* means nothing more than sending. A program that sends
     messages is a *producer* :
 
-    ![](./1_files/producer.webp)
+    ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//producer.webp)
 
     digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
     [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; }
@@ -40,7 +68,7 @@ RabbitMQ, and messaging in general, uses some jargon.
     many *consumers* can try to receive data from one *queue*. This is
     how we represent a queue:
 
-    ![](./1_files/queue.webp)
+    ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//queue.webp)
 
     digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
     [style="filled"]; // subgraph cluster\_Q1 { label="queue\_name";
@@ -50,7 +78,7 @@ RabbitMQ, and messaging in general, uses some jargon.
 -   *Consuming* has a similar meaning to receiving. A *consumer* is a
     program that mostly waits to receive messages:
 
-    ![](./1_files/consumer.webp)
+    ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//consumer.webp)
 
     digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
     [style="filled"]; // C1 [label="C", fillcolor="\#33ccff"]; }
@@ -75,7 +103,7 @@ behalf of the consumer.
 
 Our overall design will look like:
 
-![](./1_files/python-one-overall.png)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-one-overall.png)
 
 digraph G { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; subgraph
@@ -106,7 +134,7 @@ Now we have Pika installed, we can write some code.
 
 ### Sending
 
-![](./1_files/sending.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//sending.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; subgraph
@@ -179,7 +207,7 @@ connection.close()
 
 ### Receiving
 
-![](./1_files/receiving.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//receiving.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // subgraph cluster\_Q1 { label="hello";

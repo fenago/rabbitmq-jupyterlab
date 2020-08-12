@@ -4,20 +4,23 @@
 Routing
 -------
 
-### (using the Pika Python client)
+Using the Pika Python client
 
-### Prerequisites
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-This tutorial assumes RabbitMQ is
-[installed](https://www.rabbitmq.com/download.html) and running on
-localhost on standard port (5672). In case you use a different host,
-port or credentials, connections settings would require adjusting.
+#### Lab Environment
+All packages have been installed. There is no requirement for any setup.
 
-### Prerequisites
+All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
 
-As with other Python tutorials, we will use the
-[Pika](https://pypi.python.org/pypi/pika) RabbitMQ client [version
-1.0.0](https://pika.readthedocs.io/en/stable/).
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab4_python`
+
+To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command to move into python dssource files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
 ### What This Tutorial Focuses On
 
@@ -77,7 +80,7 @@ key exactly matches the routing key of the message.
 
 To illustrate that, consider the following setup:
 
-![](./4_files/direct-exchange.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//direct-exchange.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
@@ -102,7 +105,7 @@ or green will go to Q2. All other messages will be discarded.
 Multiple bindings
 -----------------
 
-![](./4_files/direct-exchange-multiple.webp)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//direct-exchange-multiple.webp)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
@@ -168,7 +171,7 @@ for severity in severities:
 Putting it all together
 -----------------------
 
-![](./4_files/python-four.png)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-four.png)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph

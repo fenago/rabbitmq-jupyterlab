@@ -4,20 +4,22 @@
 Topics
 ------
 
-### (using the Pika Python client)
 
-### Prerequisites
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-This tutorial assumes RabbitMQ is
-[installed](https://www.rabbitmq.com/download.html) and running on
-localhost on standard port (5672). In case you use a different host,
-port or credentials, connections settings would require adjusting.
+#### Lab Environment
+All packages have been installed. There is no requirement for any setup.
 
-### Prerequisites
+All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
 
-As with other Python tutorials, we will use the
-[Pika](https://pypi.python.org/pypi/pika) RabbitMQ client [version
-1.0.0](https://pika.readthedocs.io/en/stable/).
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab5_python`
+
+To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command to move into python dssource files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
 ### What This Tutorial Focuses On
 
@@ -64,7 +66,7 @@ special cases for binding keys:
 
 It's easiest to explain this in an example:
 
-![](./5_files/python-five.png)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-five.png)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph

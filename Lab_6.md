@@ -5,20 +5,21 @@
 Remote procedure call (RPC)
 ---------------------------
 
-### (using the Pika Python client)
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-### Prerequisites
+#### Lab Environment
+All packages have been installed. There is no requirement for any setup.
 
-This tutorial assumes RabbitMQ is
-[installed](https://www.rabbitmq.com/download.html) and running on
-localhost on standard port (5672). In case you use a different host,
-port or credentials, connections settings would require adjusting.
+All Notebooks are present in `work/rabbitmq-jupyterlab` folder.
 
-### Prerequisites
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab6_python`
 
-As with other Python tutorials, we will use the
-[Pika](https://pypi.python.org/pypi/pika) RabbitMQ client [version
-1.0.0](https://pika.readthedocs.io/en/stable/).
+To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command to move into python dssource files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
 ### What This Tutorial Focuses On
 
@@ -133,7 +134,7 @@ the RPC should ideally be idempotent.
 
 ### Summary
 
-![](./6_files/python-six.png)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-six.png)
 
 digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
 [style="filled"]; // subgraph cluster\_C { label="Client";
