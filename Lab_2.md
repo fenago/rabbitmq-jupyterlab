@@ -37,8 +37,7 @@ As with other Python tutorials, we will use the
 
 ### What This Tutorial Focuses On
 
-In the [first
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
+In the first tutorial
 we wrote programs to send and receive messages from a named queue. In
 this one we'll create a *Work Queue* that will be used to distribute
 time-consuming tasks among multiple workers.
@@ -322,7 +321,7 @@ Putting it all together
 -----------------------
 
 new\_task.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/new_task.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/new_task.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -348,7 +347,7 @@ connection.close()
 ```
 
 worker.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/worker.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/worker.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python

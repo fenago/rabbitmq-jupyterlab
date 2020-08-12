@@ -167,8 +167,7 @@ queue.
 
 In RabbitMQ a message can never be sent directly to the queue, it always
 needs to go through an *exchange*. But let's not get dragged down by the
-details ‒ you can read more about *exchanges* in [the third part of this
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-three-python.html).
+details ‒ you can read more about *exchanges* in the third part of this tutorial.
 All we need to know now is how to use a default exchange identified by
 an empty string. This exchange is special ‒ it allows us to specify
 exactly to which queue the message should go. The queue name needs to be
@@ -263,8 +262,7 @@ For that command to succeed we must be sure that a queue which we want
 to subscribe to exists. Fortunately we're confident about that ‒ we've
 created a queue above ‒ using queue\_declare.
 
-The auto\_ack parameter will be described [later
-on](https://www.rabbitmq.com/tutorials/tutorial-two-python.html).
+The auto\_ack parameter will be described later on.
 
 And finally, we enter a never-ending loop that waits for data and runs
 callbacks whenever necessary.
@@ -277,7 +275,7 @@ channel.start_consuming()
 ### Putting it all together
 
 send.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/send.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/send.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -295,7 +293,7 @@ connection.close()
 ```
 
 receive.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/receive.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/receive.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python

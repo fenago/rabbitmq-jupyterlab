@@ -27,8 +27,7 @@ Run following command in the terminal and move into python files directory:
 
 ### What This Tutorial Focuses On
 
-In the [previous
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-three-python.html)
+In the previous tutorial
 we built a simple logging system. We were able to broadcast log messages
 to many receivers.
 
@@ -153,7 +152,7 @@ Putting it all together
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-four.png)
 
 emit\_log\_direct.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/emit_log_direct.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/emit_log_direct.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -175,7 +174,7 @@ connection.close()
 ```
 
 receive\_logs\_direct.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/receive_logs_direct.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/receive_logs_direct.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python

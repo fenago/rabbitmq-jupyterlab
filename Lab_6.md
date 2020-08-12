@@ -26,8 +26,7 @@ Run following command in the terminal and move into python files directory:
 
 ### What This Tutorial Focuses On
 
-In the [second
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-two-python.html)
+In the second tutorial
 we learned how to use *Work Queues* to distribute time-consuming tasks
 among multiple workers.
 
@@ -104,7 +103,7 @@ channel.basic_publish(exchange='',
 > -   delivery\_mode: Marks a message as persistent (with a value of 2)
 >     or transient (any other value). You may remember this property
 >     from [the second
->     tutorial](https://www.rabbitmq.com/tutorials/tutorial-two-python.html).
+>     tutorial].
 > -   content\_type: Used to describe the mime-type of the encoding. For
 >     example for the often used JSON encoding it is a good practice to
 >     set this property to: application/json.
@@ -158,7 +157,7 @@ Putting it all together
 -----------------------
 
 rpc\_server.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/rpc_server.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/rpc_server.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -215,7 +214,7 @@ The server code is rather straightforward:
     prefetch\_count setting.
 
 rpc\_client.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/rpc_client.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/rpc_client.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python

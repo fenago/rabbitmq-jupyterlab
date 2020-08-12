@@ -31,9 +31,7 @@ Run following command in the terminal and move into python files directory:
 
 ### What This Tutorial Focuses On
 
-In the [previous
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-two-python.html)
-we created a work queue. The assumption behind a work queue is that each
+In the previous tutorial we created a work queue. The assumption behind a work queue is that each
 task is delivered to exactly one worker. In this part we'll do something
 completely different -- we'll deliver a message to multiple consumers.
 This pattern is known as "publish/subscribe".
@@ -204,7 +202,7 @@ nameless one. We need to supply a routing\_key when sending, but its
 value is ignored for fanout exchanges.
 
 emit\_log.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/emit_log.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/emit_log.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -232,7 +230,7 @@ that's okay for us; if no consumer is listening yet we can safely
 discard the message.
 
 receive\_logs.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/receive_logs.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/receive_logs.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python

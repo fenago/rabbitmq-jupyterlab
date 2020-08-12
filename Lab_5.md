@@ -26,8 +26,7 @@ Run following command in the terminal and move into python files directory:
 
 ### What This Tutorial Focuses On
 
-In the [previous
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
+In the previous tutorial
 we improved our logging system. Instead of using a fanout exchange only
 capable of dummy broadcasting, we used a direct one, and gained a
 possibility of selectively receiving the logs.
@@ -120,11 +119,10 @@ We're going to use a topic exchange in our logging system. We'll start
 off with a working assumption that the routing keys of logs will have
 two words: "\<facility\>.\<severity\>".
 
-The code is almost the same as in the [previous
-tutorial](https://www.rabbitmq.com/tutorials/tutorial-four-python.html).
+The code is almost the same as in the previous tutorial.
 
 emit\_log\_topic.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/emit_log_topic.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/emit_log_topic.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
@@ -146,7 +144,7 @@ connection.close()
 ```
 
 receive\_logs\_topic.py
-([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/receive_logs_topic.py))
+([source](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/python/receive_logs_topic.py))
 
 ``` {.lang-python .hljs}
 #!/usr/bin/env python
