@@ -12,7 +12,7 @@ localhost on standard port (5672). In case you use a different host,
 port or credentials, connections settings would require adjusting.
 
 #### Start RabbitMQ Server
-Run following command in ther terminal to start rabbitmq server:
+Run following command in the terminal to start rabbitmq server:
 
 `service rabbitmq-server start`
 
@@ -41,7 +41,7 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab1_python`
 `File` > `New` > `Terminal`.
 - To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-Run following command to move into python dssource files directory:
+Run following command in the terminal and move into python files directory:
 
 `cd /home/jovyan/work/rabbitmq-jupyterlab/python`
 
