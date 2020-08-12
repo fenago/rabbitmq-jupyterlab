@@ -13,6 +13,7 @@ port or credentials, connections settings would require adjusting.
 
 #### Start RabbitMQ Server
 Run following command in ther terminal to start rabbitmq server:
+
 `service rabbitmq-server start`
 
 `rabbitmqctl status`
@@ -21,6 +22,7 @@ Run following command in ther terminal to start rabbitmq server:
 `<host-ip>:<port>:15672`
 
 **Username:** fenago
+
 **Password:** fenago
 
 
@@ -57,9 +59,6 @@ RabbitMQ, and messaging in general, uses some jargon.
 
     ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//producer.webp)
 
-    digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-    [style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; }
-
 -   *A queue* is the name for a post box which lives inside RabbitMQ.
     Although messages flow through RabbitMQ and your applications, they
     can only be stored inside a *queue*. A *queue* is only bound by the
@@ -70,18 +69,10 @@ RabbitMQ, and messaging in general, uses some jargon.
 
     ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//queue.webp)
 
-    digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-    [style="filled"]; // subgraph cluster\_Q1 { label="queue\_name";
-    color=transparent; Q1 [label="{||||}", fillcolor="red",
-    shape="record"]; }; }
-
 -   *Consuming* has a similar meaning to receiving. A *consumer* is a
     program that mostly waits to receive messages:
 
     ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//consumer.webp)
-
-    digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-    [style="filled"]; // C1 [label="C", fillcolor="\#33ccff"]; }
 
 Note that the producer, consumer, and broker do not have to reside on
 the same host; indeed in most applications they don't. An application
@@ -104,12 +95,6 @@ behalf of the consumer.
 Our overall design will look like:
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-one-overall.png)
-
-digraph G { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_Q1 { label="hello"; color=transparent; Q1 [label="{||||}",
-fillcolor="red", shape="record"]; }; C1 [label="C",
-fillcolor="\#33ccff"]; // P1 -\> Q1 -\> C1; }
 
 Producer sends messages to the "hello" queue. The consumer receives
 messages from that queue.
@@ -135,11 +120,6 @@ Now we have Pika installed, we can write some code.
 ### Sending
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//sending.webp)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_Q1 { label="hello"; color=transparent; Q1 [label="{||||}",
-fillcolor="red", shape="record"]; }; // P1 -\> Q1; }
 
 Our first program send.py will send a single message to the queue. The
 first thing we need to do is to establish a connection with RabbitMQ
@@ -208,11 +188,6 @@ connection.close()
 ### Receiving
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//receiving.webp)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // subgraph cluster\_Q1 { label="hello";
-color=transparent; Q1 [label="{||||}", fillcolor="red", shape="record"];
-}; C1 [label="C", fillcolor="\#33ccff"]; // Q1 -\> C1; }
 
 Our second program receive.py will receive messages from the queue and
 print them on the screen.

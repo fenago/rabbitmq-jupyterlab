@@ -136,23 +136,6 @@ the RPC should ideally be idempotent.
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-six.png)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // subgraph cluster\_C { label="Client";
-color=transparent; C [label="C", fillcolor="\#00ffff"]; }; subgraph
-cluster\_XXXa { color=transparent; subgraph cluster\_Note {
-color=transparent; N
-[label="Request\\nreply\_to=amqp.gen-Xa2...\\ncorrelation\_id=abc",
-fontsize=12, shape=note]; }; subgraph cluster\_Reply {
-color=transparent; R [label="Reply\\ncorrelation\_id=abc", fontsize=12,
-shape=note]; }; }; subgraph cluster\_XXXb { color=transparent; subgraph
-cluster\_RPC { label="rpc\_queue"; color=transparent; RPC
-[label="{\<s\>||||\<e\>}", fillcolor="red", shape="record"]; }; subgraph
-cluster\_REPLY { label="reply\_to=amq.gen-Xa2..."; color=transparent;
-REPLY [label="{\<s\>||||\<e\>}", fillcolor="red", shape="record"]; }; };
-subgraph cluster\_W { label="Server"; color=transparent; W [label="S",
-fillcolor="\#00ffff"]; }; // C -\> N; N -\> RPC:s; RPC:e -\> W; W -\>
-REPLY:e; REPLY:s -\> R; R -\> C; }
-
 Our RPC will work like this:
 
 -   When the Client starts up, it creates an anonymous exclusive

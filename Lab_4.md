@@ -82,18 +82,6 @@ To illustrate that, consider the following setup:
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//direct-exchange.webp)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_X1 { label="type=direct"; color=transparent; X [label="X",
-fillcolor="\#3333CC"]; }; subgraph cluster\_Q1 { label="Q1";
-color=transparent; Q1 [label="{||||}", fillcolor="red", shape="record"];
-}; subgraph cluster\_Q2 { label="Q2"; color=transparent; Q2
-[label="{||||}", fillcolor="red", shape="record"]; }; C1
-[label=\<C\<font point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2
-[label=\<C\<font point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; //
-P -\> X; X -\> Q1 [label="orange"]; X -\> Q2 [label="black"]; X -\> Q2
-[label="green"]; Q1 -\> C1; Q2 -\> C2; }
-
 In this setup, we can see the direct exchange X with two queues bound to
 it. The first queue is bound with binding key orange, and the second has
 two bindings, one with binding key black and the other one with green.
@@ -106,18 +94,6 @@ Multiple bindings
 -----------------
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//direct-exchange-multiple.webp)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_X1 { label="type=direct"; color=transparent; X [label="X",
-fillcolor="\#3333CC"]; }; subgraph cluster\_Q1 { label="Q1";
-color=transparent; Q1 [label="{||||}", fillcolor="red", shape="record"];
-}; subgraph cluster\_Q2 { label="Q2"; color=transparent; Q2
-[label="{||||}", fillcolor="red", shape="record"]; }; C1
-[label=\<C\<font point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2
-[label=\<C\<font point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; //
-P -\> X; X -\> Q1 [label="black"]; X -\> Q2 [label="black"]; Q1 -\> C1;
-Q2 -\> C2; }
 
 It is perfectly legal to bind multiple queues with the same binding key.
 In our example we could add a binding between X and Q1 with binding key
@@ -172,19 +148,6 @@ Putting it all together
 -----------------------
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-four.png)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_X1 { label="type=direct"; color=transparent; X [label="X",
-fillcolor="\#3333CC"]; }; subgraph cluster\_Q2 {
-label="amqp.gen-S9b..."; color=transparent; Q2 [label="{||||}",
-fillcolor="red", shape="record"]; }; subgraph cluster\_Q1 {
-label="amqp.gen-Ag1..."; color=transparent; Q1 [label="{||||}",
-fillcolor="red", shape="record"]; }; C1 [label=\<C\<font
-point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2 [label=\<C\<font
-point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; // P -\> X; X -\>
-Q1 [label="info"]; X -\> Q1 [label="error"]; X -\> Q1 [label="warning"];
-X -\> Q2 [label="error"]; Q1 -\> C2; Q2 -\> C1; }
 
 emit\_log\_direct.py
 ([source](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/emit_log_direct.py))

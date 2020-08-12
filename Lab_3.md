@@ -75,12 +75,6 @@ type*.
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//exchanges.webp)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; X [label="X",
-fillcolor="\#3333CC"]; Q1 [label="{||||}", fillcolor="red",
-shape="record"]; Q2 [label="{||||}", fillcolor="red", shape="record"];
-// P1 -\> X; X -\> Q1; X -\> Q2; }
-
 There are a few exchange types available: direct, topic, headers and
 fanout. We'll focus on the last one -- the fanout. Let's create an
 exchange of that type, and call it logs:
@@ -175,11 +169,6 @@ Bindings
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//bindings.webp)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; X [label="X",
-fillcolor="\#3333CC"]; Q1 [label="{||||}", fillcolor="red",
-shape="record"]; Q2 [label="{||||}", fillcolor="red", shape="record"];
-// P1 -\> X; X -\> Q1 [label="binding"]; X -\> Q2 [label="binding"]; }
 
 We've already created a fanout exchange and a queue. Now we need to tell
 the exchange to send messages to our queue. That relationship between
@@ -204,16 +193,6 @@ Putting it all together
 -----------------------
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-three-overall.webp)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P [label="P", fillcolor="\#00ffff"]; X [label="X",
-fillcolor="\#3333CC"]; subgraph cluster\_Q1 { label="amq.gen-RQ6...";
-color=transparent; Q1 [label="{||||}", fillcolor="red", shape="record"];
-}; subgraph cluster\_Q2 { label="amq.gen-As8..."; color=transparent; Q2
-[label="{||||}", fillcolor="red", shape="record"]; }; C1
-[label=\<C\<font point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2
-[label=\<C\<font point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; //
-P -\> X; X -\> Q1; X -\> Q2; Q1 -\> C1; Q2 -\> C2; }
 
 The producer program, which emits log messages, doesn't look much
 different from the previous tutorial. The most important change is that

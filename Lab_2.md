@@ -32,13 +32,6 @@ As with other Python tutorials, we will use the
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-two.png)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; Q1
-[label="{||||}", fillcolor="red", shape="record"]; C1 [label=\<C\<font
-point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2 [label=\<C\<font
-point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; // P1 -\> Q1 -\>
-C1; Q1 -\> C2; }
-
 ### What This Tutorial Focuses On
 
 In the [first
@@ -304,15 +297,6 @@ messages for a consumer. It just blindly dispatches every n-th message
 to the n-th consumer.
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//prefetch-count.png)
-
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P1 [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_Q1 { label="queue\_name=hello"; color=transparent; Q1
-[label="{||||}", fillcolor="red", shape="record"]; }; C1
-[label=\<C\<font point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2
-[label=\<C\<font point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; //
-P1 -\> Q1; Q1 -\> C1 [label="prefetch=1"] ; Q1 -\> C2
-[label="prefetch=1"] ; }
 
 In order to defeat that we can use the Channel\#basic\_qos channel
 method with the prefetch\_count=1 setting. This uses the basic.qos

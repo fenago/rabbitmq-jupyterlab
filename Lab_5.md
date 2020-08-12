@@ -68,19 +68,6 @@ It's easiest to explain this in an example:
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images//python-five.png)
 
-digraph { bgcolor=transparent; truecolor=true; rankdir=LR; node
-[style="filled"]; // P [label="P", fillcolor="\#00ffff"]; subgraph
-cluster\_X1 { label="exchange\_type=topic"; color=transparent; X
-[label="X", fillcolor="\#3333CC"]; }; subgraph cluster\_Q1 { label="Q1";
-color=transparent; Q1 [label="{||||}", fillcolor="red", shape="record"];
-}; subgraph cluster\_Q2 { label="Q2"; color=transparent; Q2
-[label="{||||}", fillcolor="red", shape="record"]; }; C1
-[label=\<C\<font point-size="7"\>1\</font\>\>, fillcolor="\#33ccff"]; C2
-[label=\<C\<font point-size="7"\>2\</font\>\>, fillcolor="\#33ccff"]; //
-P -\> X; X -\> Q1 [label="\*.orange.\*"]; X -\> Q2
-[label="\*.\*.rabbit"]; X -\> Q2 [label="lazy.\#"]; Q1 -\> C1; Q2 -\>
-C2; }
-
 In this example, we're going to send messages which all describe
 animals. The messages will be sent with a routing key that consists of
 three words (two dots). The first word in the routing key will describe
