@@ -1,7 +1,7 @@
 
 <img align="right" src="./logo-small.png">
 
-Lab 8. Performance Tuning for RabbitMQ
+Lab. Performance Tuning for RabbitMQ
 ----------------------------------------
 
 
@@ -12,6 +12,20 @@ In this lab we will cover:
 -   System tuning
 -   Improving bandwidth
 -   Using different distribution tools
+
+
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+**Note:** 
+- Terminal is already running. You can also open new terminal by clicking:
+`File` > `New` > `Terminal`.
+- To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
+
+Run following command in the terminal and move into java files directory:
+
+`cd /home/jovyan/work/rabbitmq-jupyterlab/CookBook/Lab08`
+
 
 Introduction
 --------------
@@ -334,7 +348,7 @@ using these parameters. You can find the source code at
 `Lab08/Recipe03`.
 
 
-Code for this lab is available in `/home/jovyan/work/rabbitmq-jupyterlab/CookBook/Chapter08/Recipe03`
+Code for this lab is available in `/home/jovyan/work/rabbitmq-jupyterlab/CookBook/Lab08/Recipe03`
 
 ### Getting ready
 
@@ -424,11 +438,13 @@ Well firstly, maven will compile using the following command:
 
 
 ```
-cd /home/jovyan/work/rabbitmq-jupyterlab/CookBook/Chapter08/Recipe03
+cd /home/jovyan/work/rabbitmq-jupyterlab/CookBook/Lab08/Recipe03
 
 mvn clean compile assembly:single
 ```
 
+**Note:** Jar is created inside target directory.
+`cd target && ls -ltr`
 
 Then, maven will create the `rmqAckTest.jar` package.
 
@@ -599,7 +615,7 @@ because the producer can send more messages only after the message being
 sent is stored to all the mirrors.
 
 
-###Note
+### Note
 
 That's not as bad as it might seem. On one side, the distribution
 toward the nodes of the cluster is performed in parallel, so the

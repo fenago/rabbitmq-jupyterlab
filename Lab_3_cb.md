@@ -1228,7 +1228,7 @@ base64.encodestring('%s:%s' % ('guest', 'guest'))request.add_header("Authorizati
 
 
 
-###Note
+### Note
 
 You must use a RabbitMQ user with monitor rights.
 
@@ -1291,8 +1291,7 @@ You can find the whole API documentation at
 
 
 Developing your own web applications to monitor RabbitMQ
---------------------------------------------------------------------------
-
+-----------------------------------------------------------
 
 
 In this recipe we'll show you  how to create a
@@ -1302,9 +1301,6 @@ exchange.
 
 You can find the source code for this recipe in
 `Lab03/Recipe08`.
-
-
-
 
 
 ### Getting ready
@@ -1506,19 +1502,13 @@ browser pointing to this address as shown:
 We have used HTML5 and Bootstrap, and you can also use a mobile device.
 
 
-###Note
+### Note
 
 The connecting or disconnecting of a client is enough to raise a
 standard log event.
 
 
-
-
-
-
-
 ### There's more...
-
 
 In this example, we have introduced many heterogeneous technologies in
 order to present a realistic example on how to merge RabbitMQ and

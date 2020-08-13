@@ -528,7 +528,7 @@ In our case, we have  just limited it to produce one
 message (`-C 1`) and consume it (`-D 1`).
 
 
-###Note
+### Note
 
 The tracing tool is available in the Java client API only.
 
@@ -603,7 +603,7 @@ To run this  recipe, you just need a test RabbitMQ
 broker.
 
 
-###Note
+### Note
 
 We are going to destroy all the previously defined data---avoid using a
 production instance.
