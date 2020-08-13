@@ -8,13 +8,13 @@ Lab. Managing RabbitMQ Error Conditions
 In this lab, we will cover the following topics:
 
 
--   Monitoring RabbitMQ\'s behavior
+-   Monitoring RabbitMQ's behavior
 
 -   Using RabbitMQ to troubleshoot itself
 
--   Tracing RabbitMQ\'s ongoing activity
+-   Tracing RabbitMQ's ongoing activity
 
--   Debugging RabbitMQ\'s messages
+-   Debugging RabbitMQ's messages
 
 -   What to do when RabbitMQ fails to restart
 
@@ -27,7 +27,7 @@ Introduction
 
 
 
-Whenever we develop an application, it\'s a common practice to develop a
+Whenever we develop an application, it's a common practice to develop a
 diagnostic infrastructure. This can be based on log files, SNMP traps,
 and many others.
 
@@ -37,22 +37,22 @@ troubleshooting solution.
 We will see how to use these features in the first three recipes.
 
 Sometimes, there are problems that prevent RabbitMQ from starting. In
-this case, it\'s mandatory to fix the problem directly on the server
-machine where the issue persists, and to reset the broker. We\'ll see
+this case, it's mandatory to fix the problem directly on the server
+machine where the issue persists, and to reset the broker. We'll see
 this in the [*What to do when RabbitMQ fails to restart*]
 recipe.
 
 However, debugging messages is a part of application development too. In
 this case, we need to know the exact information exchanged between
 RabbitMQ and its clients. It is possible to use a proxy built-in tool,
-part of the Java client API (see the [*Debugging RabbitMQ\'s
+part of the Java client API (see the [*Debugging RabbitMQ's
 messages*] recipe) or to use an advanced network monitor to
 examine the traffic, as we will see in the [*Debugging using
 Wireshark*] recipe.
 
 
 
-Monitoring RabbitMQ\'s behavior
+Monitoring RabbitMQ's behavior
 -------------------------------------------------
 
 
@@ -159,7 +159,7 @@ For basic troubleshooting, you can have a look at the log files that, by
 default, are saved into `/var/log/rabbitmq`.
 
 
-Once it\'s up and  running, you will be able to
+Once it's up and  running, you will be able to
 access both system-wide  information and information
 about RabbitMQ queues and nodes from the same web interface, as you can
 see in the following screenshot:
@@ -173,7 +173,7 @@ see in the following screenshot:
 
 
 
-### There\'s more\...
+### There's more\...
 
 
 Ganglia  is a widespread solution for cluster
@@ -301,16 +301,16 @@ subscribe to the corresponding topics only.
 
 
 
-### There\'s more\...
+### There's more\...
 
 
 By default, the log exchange, `amq.rabbitmq.log`, is created
-in the vhost `/`. It\'s possible to customize its location by
+in the vhost `/`. It's possible to customize its location by
 defining `default_vhost` in the RabbitMQ configuration file.
 
 
 
-Tracing RabbitMQ\'s ongoing activity
+Tracing RabbitMQ's ongoing activity
 ------------------------------------------------------
 
 
@@ -436,7 +436,7 @@ copied to it by following specific rules:
     properties of the copied message. In step 2 of the previous numbered
     bullets, we have seen how to retrieve the 
     exchange name to which the message was originally delivered, but
-    it\'s possible to get all the original information, that is, find
+    it's possible to get all the original information, that is, find
     all the available  fields inserted into the
     message properties at the firehose official 
     documentation link at
@@ -444,7 +444,7 @@ copied to it by following specific rules:
 
 
 
-Debugging RabbitMQ\'s messages
+Debugging RabbitMQ's messages
 ------------------------------------------------
 
 
@@ -538,10 +538,10 @@ The tracing tool is available in the Java client API only.
 
 
 
-### There\'s more\...
+### There's more\...
 
 
-It\'s possible to pass some more parameters to the Java tracing program
+It's possible to pass some more parameters to the Java tracing program
 using the following code:
 
 
@@ -589,7 +589,7 @@ What to do when RabbitMQ fails to restart
 
 
 Occasionally, RabbitMQ fails to restart. This can be an important issue
-in case the broker contains persistent data; otherwise, it\'s enough to
+in case the broker contains persistent data; otherwise, it's enough to
 reset the broker persistent state.
 
 
@@ -617,14 +617,14 @@ production instance.
 ### How to do it\...
 
 
-To clean-up  RabbitMQ, it\'s enough to follow these
+To clean-up  RabbitMQ, it's enough to follow these
 simple steps:
 
 
 1.  Stop RabbitMQ if it is running.
 
 2.  Locate the   [**Mnesia**] database
-    directory. By default, it\'s `/var/lib/rabbitmq/mnesia`
+    directory. By default, it's `/var/lib/rabbitmq/mnesia`
     (Linux) or `%APPDATA%\RabbitMQ\db` (Windows).
 
 3.  Delete it recursively.
@@ -644,7 +644,7 @@ The Mnesia database contains all the runtime definitions of RabbitMQ:
 queues, exchanges, users, and so on.
 
 By deleting it, (or renaming it in case we want to try to recover some
-data, or to eventually fall back in case it\'s possible) RabbitMQ is
+data, or to eventually fall back in case it's possible) RabbitMQ is
 reset to the factory defaults; once started, it will create a new Mnesia
 database and initialize it with default values.
 
@@ -653,7 +653,7 @@ database and initialize it with default values.
 
 
 
-### There\'s more\...
+### There's more\...
 
 
 In case the broker fails to start the first time, it is probable that
@@ -684,7 +684,7 @@ Debugging using Wireshark
 
 
 
-In the [*Debugging RabbitMQ\'s messages*] recipe, we have
+In the [*Debugging RabbitMQ's messages*] recipe, we have
 seen how to trace messages going to/from RabbitMQ.
 
 However, it is not always possible, or desirable, to stop a running
@@ -696,8 +696,8 @@ possible.
 
 ### Tip
 
-However, it\'s possible to activate the firehose tracer as seen in the
-recipe, [*Tracing RabbitMQ\'s ongoing activity*].
+However, it's possible to activate the firehose tracer as seen in the
+recipe, [*Tracing RabbitMQ's ongoing activity*].
 
 
 Wireshark is a free network analysis tool that has the capability to
@@ -768,7 +768,7 @@ hosting a RabbitMQ server or client.
 
 In our example, we have captured the network traffic running both the
 client and the server on the same machine, thus connecting in
-`localhost`. That\'s why we were capturing the traffic from
+`localhost`. That's why we were capturing the traffic from
 the loopback interface (step 3 of the previous steps).
 
 Otherwise, we should capture the traffic from the network interface,
@@ -777,7 +777,7 @@ usually eth0 or something similar.
 
 ### Tip
 
-While on Linux, it\'s possible to capture traffic directed to
+While on Linux, it's possible to capture traffic directed to
 `localhost`; the same does not apply to Windows. In this case,
 the client and the server must be on two different machines, and the
 capture must be activated on the network interface (either physical or
@@ -834,7 +834,7 @@ thanks to the fact that Wireshark includes a very complete AMQP
 dissector.
 
 
-### There\'s more...
+### There's more...
 
 In case RabbitMQ is configured to use SSL and you want to analyze the
 encrypted traffic, this is possible under some given conditions by

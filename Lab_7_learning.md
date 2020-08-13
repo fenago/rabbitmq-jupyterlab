@@ -41,7 +41,7 @@ management. However, there are many scenarios that require the tuning of
 the broker based on the usage patterns and properties of the system, as
 we shall see in this lab.
 
-To understand better how to tune the performance of our broker, let\'s
+To understand better how to tune the performance of our broker, let's
 take a look at the standard three-tier broker setup:
 
 
@@ -91,7 +91,7 @@ message passing as follows:
 
 To check the  performance load, you need to prepare
 a maximum-sized volume of messages of the expected size to send for the
-processing and measuring of latency and throughput. Let\'s kick off our
+processing and measuring of latency and throughput. Let's kick off our
 performance tuning guide by taking into account these considerations.
 
 
@@ -159,7 +159,7 @@ of messages on the disk (persistent messages are already stored on the
 disk as they are persisted upon arrival in the queue, but they need to
 be removed from memory anyway), saving to the disk starts earlier (by
 default, when 50% of the maximum memory limit is reached). To change
-this threshold (let\'s say, to 80%), you need to set the
+this threshold (let's say, to 80%), you need to set the
 `vm_memory_high_watermark_paging_ratio` parameter per each
 RabbitMQ node as follows:
 
@@ -690,13 +690,13 @@ significant one being the TCP buffer size. The operating system
 typically allocates memory automatically for a TCP connection buffer,
 but you can explicitly specify the size of the TCP buffer used by
 RabbitMQ connections using the RabbitMQ configuration. Another factor is
-Nagle\'s algorithm that provides you with more efficient handling of
+Nagle's algorithm that provides you with more efficient handling of
 really small TCP packets. However, the algorithm can typically be
-disabled in case you don\'t send small-sized TCP packets as this can
+disabled in case you don't send small-sized TCP packets as this can
 even decrease the performance. The following configuration of the
 `tcp_listen_options` parameter in the RabbitMQ configuration
 sets the TCP buffers for the publisher/consumer connections to 256 KB
-and disables the Nagle\'s algorithm explicitly (it is disabled by
+and disables the Nagle's algorithm explicitly (it is disabled by
 default in the later versions of RabbitMQ clients but can be enabled
 when creating a connection from the client). For example,
 `ConnectionFactory` in the Java client uses a
@@ -746,7 +746,7 @@ RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS="+A 96"
 ```
 
 
-However, you don\'t have any guarantees that increasing the value will
+However, you don't have any guarantees that increasing the value will
 improve the throughput; you need to do the proper measurements.
 
 
@@ -788,7 +788,7 @@ divided roughly into two phases executed iteratively:
     resources such as RAM or disk space (along with tuning of the proper
     RabbitMQ parameters).
 
--   Measure the performance of your broker\'s setup and see if the
+-   Measure the performance of your broker's setup and see if the
     performance improves. Always consider conducting performance tests
     on the maximum performance limits in non-peak hours even with the
     risk of crashing your system.
@@ -881,7 +881,7 @@ features for the testing of the performance in a cluster, such as
 setting up mirroring policies or precreating multiple queues with proper
 distribution over the cluster nodes. However, you 
 can easily build your own tool on top of PerfTest that does
-that for you. Let\'s assume that we have our three-node RabbitMQ local
+that for you. Let's assume that we have our three-node RabbitMQ local
 cluster up and running. The tool performs the following functions:
 
 
@@ -957,7 +957,7 @@ time: 5.000s, sent: 53878 msg/s, received: 53533 msg/s, min/avg/max latency: 487
 
 You can see that  after the first second, we produce
 and consume roughly about 52,000 messages per second with
-auto-acknowledgement enabled. Now, let\'s execute the same test with the
+auto-acknowledgement enabled. Now, let's execute the same test with the
 acknowledgment of each message from the consumer:
 
 
@@ -994,7 +994,7 @@ time: 5.002s, sent: 24013 msg/s, received: 20410 msg/s, min/avg/max latency: 562
 
 You can see now that the performance drops more than twice (roughly
 about 21,000 messages per second) with acknowledgments from the
-consumer, which is a significant performance hit. Let\'s also make
+consumer, which is a significant performance hit. Let's also make
 messages persistent before running the performance measurement:
 
 

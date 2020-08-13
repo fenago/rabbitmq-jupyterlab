@@ -23,14 +23,14 @@ Types of threats
 ------------------
 
 There  are several aspects in which the security of
-the message broker is affected. RabbitMQ hasn\'t been planned to be
+the message broker is affected. RabbitMQ hasn't been planned to be
 exposed on the Internet initially; however, a number 
 of security concerns exist even with in-house deployments of
 the message broker. We will stay away from this fact and not make
 assumptions on whether the broker instances under consideration are
 accessible via the Internet or not.
 
-Let\'s consider again the standard three-cluster diagram (along with an
+Let's consider again the standard three-cluster diagram (along with an
 additional remote broker instance) that we have been using so that we
 can see what security issues may arise in practice:
 
@@ -96,7 +96,7 @@ identified threats:
 -   [**Plugin security**]: Plugins  can
     also expose vulnerabilities, so it is important to use plugins from
     trusted sources that are updated on a regular basis or at least do
-    proper verification that the plugin isn\'t doing something
+    proper verification that the plugin isn't doing something
     malicious.
 
 
@@ -118,7 +118,7 @@ Authentication
 
 
 
-Let\'s  consider  the default
+Let's  consider  the default
 setup of a RabbitMQ instance. It comes with a default `guest`
 user (with a `guest` password) known by anyone with basic
 knowledge about the broker. Moreover, this user has an
@@ -210,7 +210,7 @@ present in the RabbitMQ documentation):
 
 -   [**EXTERNAL**]: This  is currently
     supported by means of `rabbitmq_auth_mechanism_ssl` that
-    provides the ability to authenticate a client using the client\'s
+    provides the ability to authenticate a client using the client's
     public certificate
 
 
@@ -221,7 +221,7 @@ present in the RabbitMQ documentation):
 ### Configuring the LDAP backend
 
 
-Let\'s see, for  example, how to move from the
+Let's see, for  example, how to move from the
 default storage of RabbitMQ users to an LDAP server using the OpenLDAP
 server distribution. First, download OpenLDAP for the operating system
 of your choice (for Unix-based distribution, you either use the package
@@ -416,7 +416,7 @@ username. Note that there is an alternative mechanism that can bind the
 username to an arbitrary attribute of the user. Refer to the RabbitMQ
 LDAP plugin for more details on the alternative configuration. The last
 section specifies that our users are able to access the management
-console but they don\'t have administrative privileges. By default, all
+console but they don't have administrative privileges. By default, all
 LDAP users are non-administrative and are allowed access to the entire
 broker (all the objects in all `vhosts`). In the next section,
 we will see how to configure additional permissions for LDAP users when
@@ -581,7 +581,7 @@ can be used from the utility to manage permissions:
 
 The LDAP  user that we created earlier by default
 has all the permissions to the broker (except for being an
-administrator). Let\'s suppose that we want to disable the
+administrator). Let's suppose that we want to disable the
 `configure` permissions, allow more fine-grained
 `write` permissions only to certain queues (in certain
 vhosts), or make it an administrator. The RabbitMQ LDAP provides a query
@@ -777,7 +777,7 @@ organizational LDAP schema in order to prevent security holes.
 
 
 Although  an Erlang cookie is used to allow
-communication between nodes in a cluster, it still doesn\'t enable
+communication between nodes in a cluster, it still doesn't enable
 secure communication between these nodes. To do so, you need to enable
 SSL in the Erlang application that runs the RabbitMQ instance. For
 further details on how to enable SSL communication between nodes, you
@@ -860,7 +860,7 @@ Case study -- securing CSN
 
 Once the  CSN was in alpha testing and the good
 performance of the system was reached, the CSN team was required to take
-two important steps in order to meet the company\'s security policy:
+two important steps in order to meet the company's security policy:
 
 
 -   Enable SSL over all the communication links between all the

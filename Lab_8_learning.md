@@ -288,7 +288,7 @@ that we saw in the previous section could be:
 
 Now, you  may look for a similar issue on the
 [**rabbitmq-users**] or [**rabbitmq-discuss**] mailing
-lists. If you don\'t find a similar issue suggested with a proper
+lists. If you don't find a similar issue suggested with a proper
 solution for the problem, you can drop a message to the mailing list
 describing your problem in detail and sending the RabbitMQ logs, along
 with the Erlang crash dump. The Erlang crash dump file is generated when
@@ -343,7 +343,7 @@ Erlang [**REPL**]
 ([**Read-Eval-Print-Loop**]) shell, where you can type the
 Erlang commands. To connect to a particular node that is running on the
 local workstation, you can provide the domain name of the instance with
-the `–sname` option (sname stands for \'short names\' and it
+the `–sname` option (sname stands for 'short names' and it
 is the default instance-naming format that RabbitMQ uses), as shown in
 the following:
 
@@ -360,7 +360,7 @@ In order to use the preceding command, you need to stop the
 `rabbit@DOMAIN` node first.
 
 You can start by evaluating the following expression using the Erlang
-interpreter (don\'t forget the dot at the end of each expression):
+interpreter (don't forget the dot at the end of each expression):
 
 
 
@@ -371,7 +371,7 @@ interpreter (don\'t forget the dot at the end of each expression):
 ```
 
 
-Not only can the arithmetic expressions be evaluated. Let\'s transform
+Not only can the arithmetic expressions be evaluated. Let's transform
 the preceding example using two variables, as follows:
 
 
@@ -432,7 +432,7 @@ f().
 ```
 
 
-The preceding expression is not of much use; therefore, let\'s make a
+The preceding expression is not of much use; therefore, let's make a
 function out of it from the Erlang shell:
 
 
@@ -801,7 +801,7 @@ system (and creating any OS-level threads or processes). Communication
 between processes is possible via message passing. The Erlang VM takes
 the responsibility of handling the process execution underneath on one
 or more CPUs in the system on which the Erlang VM runs. Thus, reducing
-context switching\' you don\'t need to go to the kernel scheduler to
+context switching' you don't need to go to the kernel scheduler to
 switch between the currently executing threads. This, and the ability to
 dynamically allocate process stacks (thus saving the effort to reserve a
 lot of RAM), provides the possibility of creating thousands of Erlang
@@ -1068,7 +1068,7 @@ Stack trace:
 
 The error message  tells you that there is something
 wrong while loading the data from the Mnesia database; however, it
-doesn\'t give you enough information on the exact cause of the problem.
+doesn't give you enough information on the exact cause of the problem.
 One thing you can do is that you can simply remove the node database
 files from the `rabbit@DOMAIN-mnesia` and
 `rabbit@DOMAIN-plugins-expand` folders that provide the

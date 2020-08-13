@@ -65,7 +65,7 @@ subsequent labs. We already saw how easy it is to start/stop/restart
 instances using the `rabbitmqctl` and
 `rabbitmq-server` utilities that are part of the standard
 RabbitMQ installation. Before diving into the nuts and bolts of RabbitMQ
-administration, let\'s review the standard directory structure of a
+administration, let's review the standard directory structure of a
 typical RabbitMQ server installation. In Windows, run the following
 command from the installation folder of RabbitMQ:
 
@@ -246,7 +246,7 @@ rabbitmqctl.bat set_user_tags jim administrator
 
 
 Now `jim` is able to administer the broker and login to the
-management console. The users still don\'t have access to any vhost
+management console. The users still don't have access to any vhost
 (even the default one). If you navigate to the `Admin` tab in
 the management console, you will see something like this:
 
@@ -291,7 +291,7 @@ rabbitmqctl.bat delete_user jim
 
 
 You can also manage users from the RabbitMQ web management interface or
-the `rabbitmqadmin.py` script. Let\'s make `sam` an
+the `rabbitmqadmin.py` script. Let's make `sam` an
 administrator:
 
 
@@ -606,7 +606,7 @@ rabbitmqadmin.py list queues
 
 
 Now  that we have seen how straightforward it is to
-create exchanges and queues, let\'s see how to create bindings. The
+create exchanges and queues, let's see how to create bindings. The
 following creates a binding between the `logs` fanout exchange
 we already created and the `error_logs` queue in the default
 vhost:
@@ -648,7 +648,7 @@ rabbitmqadmin.py purge queue name=error_logs
 Policies  allow you to define (and change) certain
 properties of exchanges and queues at runtime. Since no more than one
 policy can be defined per exchange/queue, a policy can incorporate
-multiple settings at once. Let\'s consider the following scenarios:
+multiple settings at once. Let's consider the following scenarios:
 
 
 -   We decide to set a limit on the capacity of a queue; if it is
@@ -664,7 +664,7 @@ multiple settings at once. Let\'s consider the following scenarios:
 
 
 In order to set the capacity of the `error_logs` queue in the
-default (\'/\') vhost to 200,000 bytes, you can apply the following
+default ('/') vhost to 200,000 bytes, you can apply the following
 policy:
 
 
@@ -791,7 +791,7 @@ rabbitmqadmin.py declare exchange name=logs_dlx type=fanoutrabbitmqadmin.py decl
 
 Note that if we use only `"error_logs"` instead of
 `"^error_logs$"` then `error_logs_dlx` will also be
-matched and we don\'t want this to happen. Notice that in the preceding
+matched and we don't want this to happen. Notice that in the preceding
 example we combined the dead-letter-exchange policy with the message-ttl
 policy. You can list all policies with the following command:
 
@@ -1028,7 +1028,7 @@ Installing a plugin is a two-step process:
 -   Enable the plugin with the rabbitmq-plugins utility
 
 
-Let\'s say we want to be able to send e-mails from our messages directly
+Let's say we want to be able to send e-mails from our messages directly
 from the RabbitMQ instance  that receives the
 messages. For that reason, you can install the rabbitmq\_email plugin
 that provides the AMQP-SMTP and SMTP-AMQP protocol conversion plugins.
@@ -1198,7 +1198,7 @@ rocket science here. The REST interface respects the current user
 permissions (configure, write, read for particular components) when
 checking for permissions for performing a certain action.
 
-Let\'s assume that we want to implement a simple utility called
+Let's assume that we want to implement a simple utility called
 ComponentFinder that allows us to list particular RabbitMQ components in
 a given vhost based on a regular expression. For that purpose we will
 create a new Maven project that uses the REST client from the Apache

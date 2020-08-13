@@ -160,7 +160,7 @@ following steps:
 
 4.  The RabbitMQ server gives you a default username and password, that
     is, `guest:guest`. Note that `guest:guest`
-    won\'t work for remote a RabbitMQ server later than version 3.3.
+    won't work for remote a RabbitMQ server later than version 3.3.
 
 
 After locating the, management URL, you can see a dashboard, as shown
@@ -228,7 +228,7 @@ Exchanges
 
 In the [**Exchanges**] web page, we can monitor all of the
 exchanges in the current RabbitMQ server with its related 
-information. Moreover, if you click on each exchange, you\'ll
+information. Moreover, if you click on each exchange, you'll
 get detailed information about the clicked exchange item. You can
 publish and delete a message through a selected exchange. Furthermore,
 you can delete the selected exchange as well. In the
@@ -254,7 +254,7 @@ information about the selected queue. Furthermore, you can add a new
 routing key for binding, publishing, and getting a message from the
 queue.
 
-Let\'s talk about the last item of our Management plugins called the
+Let's talk about the last item of our Management plugins called the
 [**Users**] web page, which is as shown in the following image:
 
 
@@ -286,12 +286,12 @@ server and add, edit, and delete some parameters and properties on it.
 
 As REST services rely on the HTTP protocol, we can easily communicate
 with RabbitMQ using web pages with [**AJAX**], HTTP clients on
-every language, and so on. We\'d like to show the examples that use
-RabbitMQ\'s REST API, using the [**Postman**] that is a REST
+every language, and so on. We'd like to show the examples that use
+RabbitMQ's REST API, using the [**Postman**] that is a REST
 client for Google Chrome. Postman is a free extension on Google Chrome,
 and you can add the Postman using the extension market of Google Chrome.
 
-Before diving into the REST APIs, we\'d like to talk about the
+Before diving into the REST APIs, we'd like to talk about the
 authentication issue and return of the REST API after solving the issue.
 REST API of the RabbitMQ uses basic authentication and returns only
 [**JSON**] format. Therefore, we should configure our custom
@@ -317,7 +317,7 @@ As we examined the screenshot of the overview result of REST API, we
 easily found the information and its statistics for RabbitMQ. We also
 found a similar view using the dashboard of the management web page.
 
-Let\'s now move on to the queues  and their details
+Let's now move on to the queues  and their details
 with the following image:
 
 
@@ -370,7 +370,7 @@ Bindings Request
 
 
 We sometimes need to view the permissions of the user within the
-RabbitMQ server instance. With the help of RabbitMQ\'s REST service, we
+RabbitMQ server instance. With the help of RabbitMQ's REST service, we
 can easily fetch and show the permissions of the user as shown in
  the following screenshot:
 
@@ -386,7 +386,7 @@ As seen in the screenshots, both the services and results are in the
 JSON format. We can easily integrate them with our software system using
 the service-oriented architectures.
 
-The RabbitMQ REST API has lots of services. Therefore, we can\'t show
+The RabbitMQ REST API has lots of services. Therefore, we can't show
 all of the services within screenshots of the each REST service. So, it
 is good to list all the services in a table. The following table just
 shows each service of the REST API of RabbitMQ with its HTTP methods and

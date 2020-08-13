@@ -41,13 +41,13 @@ queues*] recipe.
 
 Another frequent use case is when RabbitMQ is at the foundation of a
 distributed application serving a large number of clients. In this case,
-it\'s more realistic that the bottleneck is the broker and not the
+it's more realistic that the bottleneck is the broker and not the
 client application.
 
-In this case, it\'s important that our broker has one characteristic,
+In this case, it's important that our broker has one characteristic,
 that is, scalability.
 
-When the number of clients outgrow the current maximum capacity, it\'s
+When the number of clients outgrow the current maximum capacity, it's
 sufficient to add one or more nodes to the RabbitMQ cluster to
 distribute the load and improve the total throughput.
 
@@ -187,7 +187,7 @@ RabbitMQ, you can perform the following steps:
 ### How it works...
 
 
-The watermark is the maximum memory used by RabbitMQ, by default it\'s
+The watermark is the maximum memory used by RabbitMQ, by default it's
 0.4 which means 40 percent of the installed physical memory. When the
 memory reaches the watermark the broker stops accepting new connections
 and messages. The watermark value is approximate; in some cases it could
@@ -291,7 +291,7 @@ parts are not interpreted anymore but compiled at startup into native
 machine code.
 
 You can further check  that in the log file you
-don\'t see any message as follows:
+don't see any message as follows:
 
 
 
@@ -309,7 +309,7 @@ By default, on Linux RabbitMQ, log files are placed in
 `/var/log/rabbitmq`.
 
 
-### There\'s more...
+### There's more...
 
 
 Since HiPE is an experimental option, we discourage its usage from the
@@ -353,9 +353,9 @@ You need Java 1.7 or higher and Apache maven.
 ### How to do it...
 
 
-We skip the producer code because it\'s the same one shown in the
+We skip the producer code because it's the same one shown in the
 [*Multithreading and queues*] recipe. We still use the
-`ReliableClient` class as the base class. Let\'s see the
+`ReliableClient` class as the base class. Let's see the
 consumer by performing the following steps:
 
 
@@ -505,7 +505,7 @@ queue.
 
 To set noAck,  use
 `basicConsume(Constants.queue, true)`. The parameter is useful
-when you have a stream data or when it doesn\'t matter to send the acks
+when you have a stream data or when it doesn't matter to send the acks
 manually.
 
 
@@ -546,7 +546,7 @@ java -cp rmqAckTest.jar rmqexample.ConsumerMain 1 1 1 0
 
 
 
-### There\'s more...
+### There's more...
 
 
 When optimizing messaging operations, you can obtain performance gains
@@ -623,7 +623,7 @@ sent is stored to all the mirrors.
 
 ###Note
 
-That\'s not as bad as it might seem. On one side, the distribution
+That's not as bad as it might seem. On one side, the distribution
 toward the nodes of the cluster is performed in parallel, so the
 overhead does not grow linearly with the number of nodes. On the other
 side, the replication is usually limited to two or three replicas at the
@@ -701,7 +701,7 @@ The tests performed are as follows:
 ### Tip
 
 As a general rule, high availability has a negative impact on
-performance. So, whenever it\'s not mandatory, it\'s better to leave it
+performance. So, whenever it's not mandatory, it's better to leave it
 off.
 
 
@@ -710,7 +710,7 @@ performance and in this context, we have seen the impact of queue
 mirroring. If we need a level of replication, but without the strict
 requirements of mirroring, it is possible to use a shovel plugin or
 simply publish the message to two independent brokers in parallel. In
-this example, the messages aren\'t persistent and don\'t use the
+this example, the messages aren't persistent and don't use the
 [**tx-transaction**].
 
 
@@ -726,7 +726,7 @@ message.
 
 
 
-### There\'s more...
+### There's more...
 
 
 Finding the right compromise between performance and reliability is very

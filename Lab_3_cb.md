@@ -31,7 +31,7 @@ Introduction
 
 
 
-Once installed, RabbitMQ  just works; it\'s really a
+Once installed, RabbitMQ  just works; it's really a
 zero configuration service. However, RabbitMQ has a lot of configuration
 options, which make it very flexible and able to work in different
 environments. In this lab we will see how to change the
@@ -311,7 +311,7 @@ permission for the exchange named `stat_exchange_03/02`.
 It then publishes messages to the same exchange, so the user needs to
 have write permissions to it. But then messages will be routed to the
 `stat_queue_03/02` queue; the user also needs write
-permissions to it or the messages won\'t be routed to this queue. By
+permissions to it or the messages won't be routed to this queue. By
 setting the write permission to the regular expression
 `"stat_.*"`, the user is authorized to publish messages to
 both the exchange and the queue.
@@ -335,7 +335,7 @@ the exchange.
 
 
 
-### There\'s more...
+### There's more...
 
 
 With users, we can restrict the access and capabilities of different
@@ -374,7 +374,7 @@ operations, you can use the table at
 
 User permissions  refer just to AMQP operations. The
 RabbitMQ management plugin (more details later in this lab) extends
-this permission model using user tags; it\'s possible to associate one
+this permission model using user tags; it's possible to associate one
 or more arbitrary tag strings to any user.
 
 To let a user access the management plugin, it must have one of the
@@ -672,7 +672,7 @@ Now the connection is encrypted using the keys configured in the server.
 
 
 
-### There\'s more...
+### There's more...
 
 
 Since we are using server certificates only, the communication between
@@ -892,7 +892,7 @@ Managing RabbitMQ from a browser
 
 
 
-In this recipe we\'re showing you how to admin RabbitMQ from an HTTP API
+In this recipe we're showing you how to admin RabbitMQ from an HTTP API
 using a Management Plugin.
 
 The plugin provides real-time charts to monitor the flow of your
@@ -949,7 +949,7 @@ the  following steps:
 
 
 By default, the web application uses `guest`/`guest`
-as the RabbitMQ users\' username/password. Web management is very
+as the RabbitMQ users' username/password. Web management is very
 intuitive, and you can manage queues, exchanges, users, 
 connections, and virtual hosts and also send 
 and receive messages.
@@ -978,7 +978,7 @@ If you are running RabbitMQ on Windows, you need to install the
 `Hanlde.exe` SysInternals tool
 (<http://technet.microsoft.com/en-us/sysinternals/bb896655>) in an
 executable path such as `C:/Windows/system32`. Otherwise, the
-console won\'t be able to show the count of the file descriptors.
+console won't be able to show the count of the file descriptors.
 
 
 On the same page, there is other information about the active Erlang
@@ -996,7 +996,7 @@ the AMQP broker and the various installed plugins (web contexts):
 
 
 
-### There\'s more...
+### There's more...
 
 
 At `http://localhost:15672/api/`, you can get access to the
@@ -1024,8 +1024,8 @@ Configuring RabbitMQ parameters
 
 In this recipe, we are  going to introduce the
 RabbitMQ parameters. By default, the  broker
-doesn\'t create the configuration files  because in
-most of the cases you don\'t need to change them. However, it\'s
+doesn't create the configuration files  because in
+most of the cases you don't need to change them. However, it's
 important to know how to configure the environment variables and the
 broker parameters.
 
@@ -1110,7 +1110,7 @@ the location. You can find the complete list of parameters at
 
 
 
-### There\'s more...
+### There's more...
 
 
 In this recipe we have just introduced the RabbitMQ configuration. In
@@ -1124,7 +1124,7 @@ Developing Python applications to monitor RabbitMQ
 
 
 
-In this example we\'re going to create a Python script to monitor
+In this example we're going to create a Python script to monitor
 RabbitMQ using the JSON API that you can access from the URL
 `http://localhost:15672/api/`.
 
@@ -1253,7 +1253,7 @@ Our example  writes the logs in the
 
 
 
-### There\'s more...
+### There's more...
 
 
 In this example we have checked just a few APIs. Obviously there are
@@ -1295,7 +1295,7 @@ Developing your own web applications to monitor RabbitMQ
 
 
 
-In this recipe we\'ll show you  how to create a
+In this recipe we'll show you  how to create a
 custom web application to monitor the RabbitMQ logs. In order to check
 the logs, you can bind a queue to the `amq.rabbitmq.log`
 exchange.
@@ -1458,7 +1458,7 @@ the active clients.
 The `websocket` backend is ready.
 
 In step 7 the browser is  connected to the server
-and now it\'s ready, as shown in the following figure:
+and now it's ready, as shown in the following figure:
 
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_cookbook/6501OS_03_06.jpg)
@@ -1517,7 +1517,7 @@ standard log event.
 
 
 
-### There\'s more...
+### There's more...
 
 
 In this example, we have introduced many heterogeneous technologies in
