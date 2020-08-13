@@ -25,7 +25,6 @@ Very often the application needs to be optimized on the client side:
 
 -   CPU-intensive applications can be optimized by running one thread
     for each CPU core
-
 -   I/O-intensive applications can be optimized by running many threads
     per core in order to hide implicit latencies
 
@@ -61,9 +60,7 @@ eventually modifying the broker parameters.
 
 
 System tuning
--------------------------------
-
-
+-------------
 
 In this recipe, we will  appreciate some steps
 useful to obtain the maximum performance from RabbitMQ. We will cover
@@ -337,17 +334,12 @@ using these parameters. You can find the source code at
 `Lab08/Recipe03`.
 
 
-
-
+Code for this lab is available in `/home/jovyan/work/rabbitmq-jupyterlab/CookBook/Chapter08/Recipe03`
 
 ### Getting ready
 
 
 You need Java 1.7 or higher and Apache maven.
-
-
-
-
 
 
 ### How to do it...
@@ -431,9 +423,9 @@ Well firstly, maven will compile using the following command:
 
 
 
-
-
 ```
+cd /home/jovyan/work/rabbitmq-jupyterlab/CookBook/Chapter08/Recipe03
+
 mvn clean compile assembly:single
 ```
 
@@ -447,16 +439,11 @@ MacBook pro Dual Core, 4 GB RAM using the following parameters:
 
 -   For the producer, we can run the following command:
 
-
-
     ```
     java -cp rmqAckTest.jar rmqexample.ProducerMain 1 100000 64000
     ```
-    
 
 -   For the consumer, we can run the following two tests:
-
-
 
     ```
     java -cp rmqAckTest.jar rmqexample.ConsumerMain 2 50 0 0

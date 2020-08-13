@@ -2,7 +2,7 @@
 
 
 Lab. Performance Tuning and Monitoring
------------------------------------------------------
+---------------------------------------
 
 
 Performance is a critical requirement for many applications. Each
@@ -14,17 +14,13 @@ RabbitMQ against other brokers.
 
 The following topics will be covered in this lab:
 
-
 -   Performance tuning of RabbitMQ instances
-
 -   Monitoring RabbitMQ instances
-
 -   Comparing RabbitMQ with other message brokers
 
 
-
 Performance tuning of RabbitMQ instances
-----------------------------------------------------------
+----------------------------------------
 
 
 

@@ -41,15 +41,9 @@ troubleshooting. We will use a
 
 
 1.  Check the status of a particular node.
-
 2.  Inspect RabbitMQ logs.
-
 3.  Check the RabbitMQ community mailing list or ask in the IRC chat.
-
 4.  Use Erlang utilities to troubleshoot a particular node.
-
-
-
 
 
 
@@ -58,9 +52,6 @@ troubleshooting. We will use a
 
 You can  check the status of a particular node using
 the `rabbitmq` utility as follows:
-
-
-
 
 
 ```
@@ -1012,14 +1003,9 @@ the crash dump for more information on the problem):
 Problems with starting/stopping RabbitMQ nodes
 ----------------------------------------------------------------
 
-
-
-Consider  that you have configured a running cluster
+Consider that you have configured a running cluster
 with three nodes and one of your nodes suddenly fails. When you try to
 bring up that node using the following:
-
-
-
 
 
 ```
@@ -1030,8 +1016,6 @@ rabbitmq-server.bat
 You get the dreadful `BOOT FAILED` message along with an error
 description message of `timeout_waiting_for_tables` and an
 Erlang stacktrace, as follows:
-
-
 
 
 

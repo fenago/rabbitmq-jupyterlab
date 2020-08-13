@@ -13,17 +13,11 @@ convenient facilities for administering and managing the message broker.
 
 Topics covered in the lab:
 
-
 -   Administering RabbitMQ instances
-
 -   Administering the RabbitMQ database
-
 -   Installing RabbitMQ plugins
-
 -   Configuring RabbitMQ instances
-
 -   Managing RabbitMQ instances
-
 -   Upgrading RabbitMQ
 
 
@@ -241,7 +235,7 @@ management console you will receive a login failure. In order to make
 
 
 ```
-rabbitmqctl.bat set_user_tags jim administrator
+rabbitmqctl set_user_tags jim administrator
 ```
 
 
@@ -258,35 +252,24 @@ The following  command can be used to list all users
 in the broker instance:
 
 
-
-
-
 ```
-rabbitmqctl.bat list_users
+rabbitmqctl list_users
 ```
 
 
 If you want to change the password for `sam` to
 `t1ster`, you can issue the following command:
 
-
-
-
-
 ```
-rabbitmqctl.bat change_password jim t1ster
+rabbitmqctl change_password jim t1ster
 ```
 
 
 If you want to delete the user `sam`, you can issue the
 following command:
 
-
-
-
-
 ```
-rabbitmqctl.bat delete_user jim
+rabbitmqctl delete_user jim
 ```
 
 
@@ -294,18 +277,9 @@ You can also manage users from the RabbitMQ web management interface or
 the `rabbitmqadmin.py` script. Let's make `sam` an
 administrator:
 
-
-
-
-
 ```
-rabbitmqctl.bat set_user_tags sam administrator
+rabbitmqctl set_user_tags sam administrator
 ```
-
-
-
-
-
 
 
 ### Administering vhosts
@@ -317,12 +291,9 @@ with its own set of exchanges, queues, and bindings. The following
 example creates the `chat` and `events` vhost:
 
 
-
-
-
 ```
-rabbitmqctl.bat add_vhost chat
-rabbitmqctl.bat add_vhost events
+rabbitmqctl add_vhost chat
+rabbitmqctl add_vhost events
 ```
 
 
@@ -342,12 +313,8 @@ like this:
 The following command can be used to list all virtual hosts in the
 broker instance:
 
-
-
-
-
 ```
-rabbitmqctl.bat list_vhosts
+rabbitmqctl list_vhosts
 ```
 
 
@@ -355,19 +322,11 @@ You can use the following command to the delete the `events`
 vhost:
 
 
-
-
-
 ```
-rabbitmqctl.bat delete_vhost events
+rabbitmqctl delete_vhost events
 ```
-
 
 You can also manage vhosts from the RabbitMQ web management interface.
-
-
-
-
 
 
 ### Administering permissions
@@ -381,11 +340,8 @@ write, and read permissions to all resources in the `chat`
 vhost to the user `jim`:
 
 
-
-
-
 ```
-rabbitmqctl.bat set_permissions –p chat jim ".*" ".*" ".*"
+rabbitmqctl set_permissions –p chat jim ".*" ".*" ".*"
 ```
 
 
@@ -413,7 +369,7 @@ permissions in the broker with the following command:
 
 
 ```
-rabbitmqctl.bat list_permissions
+rabbitmqctl list_permissions
 ```
 
 
@@ -437,14 +393,12 @@ You can delete the permission given to the user `sam` for the
 
 
 ```
-rabbitmqctl.bat clear_permissions -p chat sam
+rabbitmqctl clear_permissions -p chat sam
 ```
 
 
 Alternatively you can use the `rabbitmqadmin.py` script for
 this purpose:
-
-
 
 
 
@@ -711,7 +665,7 @@ delete the policy you can issue:
 
 
 ```
-rabbitmqctl.bat clear_policy max-queue-len
+rabbitmqctl clear_policy max-queue-len
 ```
 
 
