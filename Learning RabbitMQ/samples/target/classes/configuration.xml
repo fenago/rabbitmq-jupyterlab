@@ -26,6 +26,6 @@
 	</rabbit:listener-container>
 
 	<bean id="springListener"
-		class="org.packt.rabbitmq.book.samples.chapter6.ContainerListenerSpringExample" />
+		class="org.fenago.rabbitmq.book.samples.chapter6.ContainerListenerSpringExample" />
 
 </beans>
