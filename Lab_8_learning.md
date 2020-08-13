@@ -1,0 +1,1399 @@
+
+
+[]{#ch08}Chapter 8. Troubleshooting {#chapter-8.-troubleshooting .title}
+-----------------------------------
+
+</div>
+
+</div>
+:::
+
+Running and maintaining a system successfully requires a good
+understanding of its components along with the various utilities that
+can be used to troubleshoot problems occurring in any of these
+components. In this chapter, we will look into some techniques that can
+be applied to troubleshoot the problem that is occurring with your
+RabbitMQ instances along with several common issues occurring in
+practice.
+
+The topics to be covered in the chapter are as follows:
+
+::: {.itemizedlist}
+-   General troubleshooting approach
+
+-   Problems with starting/stopping the RabbitMQ nodes
+
+-   Problems with message delivery
+
+
+
+[]{#ch08lvl1sec52}General troubleshooting approach {#general-troubleshooting-approach .title style="clear: both"}
+--------------------------------------------------
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+:::
+
+As RabbitMQ instances []{#id309 .indexterm}run on top of the Erlang
+virtual machine, we can leverage the troubleshooting utilities provided
+by Erlang to troubleshoot problems occurring in[]{#id310 .indexterm} the
+message broker. The variety of errors occurring may range from problems
+relating to starting/stopping the broker instance to performance
+issues---we already covered performance tuning and monitoring in the
+previous chapter; therefore, you can already apply that knowledge to
+troubleshooting. We will use a []{#id311 .indexterm}
+[**top-down**]{.strong} approach to troubleshoot issues, as follows:
+
+::: {.orderedlist}
+1.  Check the status of a particular node.
+
+2.  Inspect RabbitMQ logs.
+
+3.  Check the RabbitMQ community mailing list or ask in the IRC chat.
+
+4.  Use Erlang utilities to troubleshoot a particular node.
+:::
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+### []{#ch08lvl2sec68}Checking the status of a particular node {#checking-the-status-of-a-particular-node .title}
+
+</div>
+
+</div>
+:::
+
+You can []{#id312 .indexterm}check the status of a particular node using
+the `rabbitmq`{.literal} utility as follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+rabbitmqctl.bat -n instance1 status
+```
+:::
+
+In the preceding example, we are checking the status of the
+`instance1`{.literal} RabbitMQ node. You will observe an output of the
+`status`{.literal} command similar to the following (we are omitting
+resource-related statistics, such as memory usage and number of
+processes, as we already covered them in the previous chapter):
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+[{pid,10312},
+ {running_applications,
+     [{rabbitmq_shovel,"Data Shovel for RabbitMQ","3.4.4"},
+      {rabbitmq_management_agent,"RabbitMQ Management Agent","3.4.4"},
+      {rabbit,"RabbitMQ","3.4.4"},
+      {os_mon,"CPO  CXC 138 46","2.3"},
+      {gen_smtp,"An erlang SMTP server/client framework",
+          "0.9.0-rmq3.4.x-61e19ec5-gita62c02e"},
+      {ssl,"Erlang/OTP SSL application","5.3.8"},
+      {public_key,"Public key infrastructure","0.22.1"},
+      {crypto,"CRYPTO","3.4.2"},
+      {mnesia,"MNESIA  CXC 138 12","4.12.4"},
+      {amqp_client,"RabbitMQ AMQP Client","3.4.4"},
+      {xmerl,"XML parser","1.3.7"},
+      {asn1,"The Erlang ASN1 compiler version 3.0.3","3.0.3"},
+      {sasl,"SASL  CXC 138 11","2.4.1"},
+      {stdlib,"ERTS  CXC 138 10","2.3"},
+      {kernel,"ERTS  CXC 138 10","3.1"}]},
+ {os,{win32,nt}},
+ {erlang_version,
+     "Erlang/OTP 17 [erts-6.3] [64-bit] [smp:8:8] [async-threads:30]\n"}
+```
+:::
+
+In the preceding piece of output, you can observe a lot of useful
+information, such as the following:
+
+::: {.itemizedlist}
+-   RabbitMQ message broker version
+
+-   Erlang distribution
+
+-   Operating system
+
+-   RabbitMQ Erlang applications along with their versions
+:::
+
+This is a good starting point to troubleshoot.
+:::
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+### []{#ch08lvl2sec69}Inspecting the RabbitMQ logs {#inspecting-the-rabbitmq-logs .title}
+
+</div>
+
+</div>
+:::
+
+The []{#id313 .indexterm}RabbitMQ logs[]{#id314 .indexterm} are located
+in the `logs`{.literal} directory by default in the RabbitMQ
+installation directory in Windows or in the
+`/var/log/rabbitmq`{.literal} directory in Unix-like operating systems.
+This location can be changed by setting the
+`RABBITMQ_LOG_BASE`{.literal} environment variable. You can inspect the
+error logs for more detailed errors that are related to either the
+particular instance or in regard to communication with other nodes in
+the cluster. The RabbitMQ logs can be rotated using the
+`rabbitmqctl`{.literal} utility with the `rotate_logs`{.literal}
+command. Along with the RabbitMQ log file for the node, there is an
+alternative log file (ending with an[ **SASL**]{.strong} suffix), which
+is generated by the []{#id315 .indexterm}Erlang [**SASL**]{.strong}
+([**System Architecture Support Libraries**]{.strong}) application
+libraries that provide different forms of logging reports, including
+crash reports.
+
+The following message specifies that free disk monitoring (required for
+comparison against the free disk threshold, set by the
+`disk_free_limit`{.literal} configuration parameter) is not supported on
+the platform that runs the RabbitMQ node:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+=INFO REPORT==== 2-Sep-2015::20:41:47 ===
+Disabling disk free space monitoring on unsupported platform:
+{{'EXIT',{eacces,[{erlang,open_port,
+                          [{spawn,"C:\\Windows\\system32\\cmd.exe /c dir /-C /W \"d:/software/RabbitMQ/rabbitmq_server-3.4.4/db/rabbit@DOMAIN-mnesia\""},
+                           [stream,in,eof,hide]],
+                          []},
+                  {os,cmd,1,[{file,"os.erl"},{line,204}]},
+                  {rabbit_disk_monitor,get_disk_free,2,[]},
+                  {rabbit_disk_monitor,init,1,[]},
+                  {gen_server,init_it,6,[{file,"gen_server.erl"},{line,306}]},
+                  {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,237}]}]}},
+```
+:::
+
+In this particular example, the message is descriptive enough and can
+save you the effort of looking further in the Erlang stack trace. In the
+SASL log file, the same error looks similar to the following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+=CRASH REPORT==== 2-Sep-2015::20:41:45 ===
+  crasher:
+    initial call: rabbit_disk_monitor:init/1
+    pid: <0.28939.1>
+    registered_name: []
+    exception exit: unsupported_platform
+      in function  gen_server:init_it/6 (gen_server.erl, line 322)
+    ancestors: [rabbit_disk_monitor_sup,rabbit_sup,<0.143.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 646
+  neighbours:
+```
+:::
+
+If you are trying[]{#id316 .indexterm} to consume a message from a
+non-existent queue (for example, [**test-queue**]{.strong}), you may see
+a message such as the following in the logs:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+=ERROR REPORT==== 20-Jul-2015::12:31:20 ===
+Channel error on connection <0.514.0> (127.0.0.1:63451 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 2:
+{amqp_error,not_found,"no queue 'test-queue' in vhost '/'",'basic.consume'}
+```
+:::
+
+In case you lose []{#id317 .indexterm}a connection with a cluster node,
+you will get a message that can be easily interpreted, as follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+=ERROR REPORT==== 2-Sep-2015::23:12:27 ===
+** Node instance1@Domain not responding **
+** Removing (timedout) connection **
+```
+:::
+
+In case you are running a RabbitMQ cluster and you already have the web
+management console started on the default port, you can hit the
+following problem (as displayed in the RabbitMQ log file):
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+=ERROR REPORT==== 20-Jul-2015::12:25:41 ===
+** Generic server rabbit_web_dispatch_registry terminating 
+** Last message in was {add,rabbit_mgmt,
+                            [{port,15672}],
+                            #Fun<rabbit_web_dispatch.1.31447083>,
+                            #Fun<rabbit_mgmt_app.0.15521781>,
+                            {[],"RabbitMQ Management"}}
+** When Server state == undefined
+** Reason for termination == 
+** {{could_not_start_listener,[{port,15672}],eaddrinuse},
+    [{rabbit_web_dispatch_sup,check_error,2,[]},
+     {rabbit_web_dispatch_registry,handle_call,3,[]},
+     {gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,607}]},
+     {gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,639}]},
+     {proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,237}]}]}
+```
+:::
+
+This indicates that `15672`{.literal} could not be opened (if another
+cluster node is running the management console, you do not need to
+enable it for other cluster nodes anyway, unless you want to []{#id318
+.indexterm}specify a different port on which you want to run the
+management plugin for the purpose of high availability). However, if the
+`15672`{.literal} port is not in use, this may indicate a[]{#id319
+.indexterm} mismatch between the Erlang distribution and the RabbitMQ
+server, preventing the management plugin to open the `15672`{.literal}
+port. This leads us to use alternative mechanisms for further
+troubleshooting of the problem.
+:::
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+### []{#ch08lvl2sec70}The RabbitMQ mailing list and IRC channel {#the-rabbitmq-mailing-list-and-irc-channel .title}
+
+</div>
+
+</div>
+:::
+
+At this []{#id320 .indexterm}point, you may have already discovered the
+output of the `status`{.literal} command and inspected the logs;
+however, you might still be clueless about what the reason for the error
+that we saw in the previous section could be:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+** Generic server rabbit_web_dispatch_registry terminating 
+```
+:::
+
+Now, you []{#id321 .indexterm}may look for a similar issue on the
+[**rabbitmq-users**]{.strong} or [**rabbitmq-discuss**]{.strong} mailing
+lists. If you don\'t find a similar issue suggested with a proper
+solution for the problem, you can drop a message to the mailing list
+describing your problem in detail and sending the RabbitMQ logs, along
+with the Erlang crash dump. The Erlang crash dump file is generated when
+the Erlang VM abnormally terminates, and it is generated in the
+directory where your RabbitMQ server starts (for example, the
+`sbin`{.literal} directory from the RabbitMQ installation in Windows).
+:::
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+### []{#ch08lvl2sec71}Erlang troubleshooting {#erlang-troubleshooting .title}
+
+</div>
+
+</div>
+:::
+
+The `erl_crash.dump`{.literal} file []{#id322 .indexterm}is created in
+the []{#id323 .indexterm}startup directory of the RabbitMQ server when
+something goes wrong with the message broker. It is not the only means
+by which you can troubleshoot the message broker using information that
+is provided by the Erlang runtime, you can also directly connect to the
+Erlang process of the RabbitMQ instance and query it for the purpose of
+troubleshooting.
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+#### []{#ch08lvl3sec14}An Erlang Primer {#an-erlang-primer .title}
+
+</div>
+
+</div>
+:::
+
+To be []{#id324 .indexterm}able to dig into the root cause of a problem
+requires a good understanding of the Erlang programming language. In
+this section, we will cover the basics of Erlang and make use of this
+knowledge in the last chapter of the book, when we discuss how to create
+a plugin for RabbitMQ and how to implement RabbitMQ.
+
+To begin, you need to add the `<erlang_home>\bin`{.literal} directory to
+your `PATH`{.literal} and execute the following command from the command
+line:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+erl
+```
+:::
+
+The command[]{#id325 .indexterm} will fire up the []{#id326
+.indexterm}Erlang [**REPL**]{.strong}
+([**Read-Eval-Print-Loop**]{.strong}) shell, where you can type the
+Erlang commands. To connect to a particular node that is running on the
+local workstation, you can provide the domain name of the instance with
+the `–sname`{.literal} option (sname stands for \'short names\' and it
+is the default instance-naming format that RabbitMQ uses), as shown in
+the following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+erl –sname rabbit@DOMAIN
+```
+:::
+
+In order to use the preceding command, you need to stop the
+`rabbit@DOMAIN`{.literal} node first.
+
+You can start by evaluating the following expression using the Erlang
+interpreter (don\'t forget the dot at the end of each expression):
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+(4 + 6) * 2.
+```
+:::
+
+Not only can the arithmetic expressions be evaluated. Let\'s transform
+the preceding example using two variables, as follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+X = 4.
+Y = 6.
+(X + Y) * 2.
+```
+:::
+
+If you reassign the `X`{.literal} variable to `10`{.literal}, as
+follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+X = 10.
+```
+:::
+
+You will get an error as shown in the following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+** exception error: no match of right hand side value 10
+```
+:::
+
+To reassign the variable, you need to first unbind it using the
+`f()`{.literal} function:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+f(X).
+```
+:::
+
+Note that you can unbind all variables by simply calling the following
+function:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+f().
+```
+:::
+
+The preceding expression is not of much use; therefore, let\'s make a
+function out of it from the Erlang shell:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+F = fun(X,Y) -> (X + Y) * 2 end.
+```
+:::
+
+The `fun`{.literal} keyword can be used to define an anonymous function.
+In the previous case, this function is bound to the `F`{.literal}
+variable. Now, you can evaluate the former expression using the
+following function:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+F(4,6).
+```
+:::
+
+Functions in Erlang are typically defined in modules. A module in Erlang
+is defined as a file with an `.erl`{.literal} extension, which is
+further compiled to an Erlang object file with a .[**beam**]{.strong}
+extension[]{#id327 .indexterm} that represents the actual byte code that
+is executed by the Erlang virtual machine. You can define the preceding
+function in a module called []{#id328 .indexterm} [**sample**]{.strong}
+(saved in a `sample.erl`{.literal} file. Please note that the name of
+the file should match the `module`{.literal} declaration):
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+-module(sample).
+-export([double/2]).
+double(X,Y) -> (X+Y) * 2.
+```
+:::
+
+The `–module`{.literal} declaration []{#id329 .indexterm}specifies the
+name of the module, followed by one or more `-export`{.literal}
+declarations that explicitly specify which functions from the module are
+exported by the module and can be used by other modules. You should
+specify the name of the function along with its arity (number of
+parameters that the function accepts). Functions with the same name but
+different numbers of parameters are treated as separate function
+declarations by Erlang. In the module, there is a `double`{.literal}
+function---this declaration is valid only in a module and cannot be
+executed from the shell---you should use the [**fun**]{.strong} keyword
+for this, as we saw earlier.
+
+To compile the module, you must first navigate to the directory of your
+module using the `cd()`{.literal} function and then, the `c()`{.literal}
+function, to compile the module to a beam file. Assuming the
+`sample.erl`{.literal} file is created in the `D:\sources`{.literal}
+directory, you can execute the following from the Erlang REPL in order
+to compile the module:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+cd('D:/sources').(sample).
+```
+:::
+
+If compilation is successful, you will see a message as follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+{ok,sample}
+```
+:::
+
+This is actually a tuple that is returned from the `c()`{.literal}
+function, which indicates a successful status (`ok`{.literal}) and the
+name of the compiled module. A tuple, in Erlang, is a container with a
+fixed number of elements that can be of different types. In order to
+invoke the double function from the sample module, you can write the
+following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+sample:double(6,4).
+```
+:::
+
+Use the `m()`{.literal} function or the `module_info()`{.literal} method
+(which returns a list with the result) that is available for each Erlang
+module to check for information, such as available functions, about the
+module:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+m(sample).
+sample:module_info().
+```
+:::
+
+These can also be pretty useful utilities to inspect the existing
+modules in a system such as RabbitMQ.
+
+Variable definitions do not specify the type of the variable, it is
+determined at runtime (as seen in the `double`{.literal} function). We
+have the following types of data:
+
+::: {.itemizedlist}
+-   `integers`{.literal}: There[]{#id330 .indexterm} is no limit to the
+    size of an integer in Erlang, for example, 257.
+
+-   `floats`{.literal}: For[]{#id331 .indexterm} example, 45.6.
+
+-   `atoms`{.literal}: They []{#id332 .indexterm}are used to create
+    constants; you can think of them as values of an enumeration or
+    constant, for example, X, Y.
+
+-   `booleans`{.literal}: [**true**]{.strong} []{#id333 .indexterm}or
+    [**false**]{.strong}.
+
+-   `references`{.literal}: They[]{#id334 .indexterm} are used to create
+    unique identifiers for objects.
+
+-   `bit strings`{.literal}: They []{#id335 .indexterm}are used to
+    represent sequences of bits as segments of particular value that
+    optionally have a length and a type, for example, \<\< \<\<0:1,1:1,
+    0:1\>\>. In this particular example, the bit string represents the
+    bit sequence \"010\". Bit strings are very useful to parse binary
+    streams of data, for example, parsing a protocol message based on a
+    protocol mask. As you can see, this mechanism can be directly used
+    to parse an AMQP message.
+
+-   `binaries`{.literal}: They[]{#id336 .indexterm} are simply bit
+    strings, where each segment of the string is a sequence of bits that
+    is divisible by eight. For example, \<\<111, 172, 15\>\>.
+
+-   `pids`{.literal}: They[]{#id337 .indexterm} are used to represent
+    process identifiers.
+
+-   `ports`{.literal}: They are []{#id338 .indexterm}used to represent
+    Erlang ports; essentially a separate processes is started for an
+    Erlang process that maps to an OS port and provides a communication
+    with the external world.
+
+-   `funs`{.literal}: They are []{#id339 .indexterm}used to create
+    function objects (closures).
+
+-   `tuples`{.literal}: They []{#id340 .indexterm}are containers for a
+    fixed number of items, possibly of different types.
+
+-   `lists`{.literal}: They []{#id341 .indexterm}are containers for a
+    variable number of items, possibly of different types.
+
+-   `maps`{.literal}: They[]{#id342 .indexterm} are containers for a
+    key-value pair of items.
+
+-   `records`{.literal}: They []{#id343 .indexterm}are containers for a
+    mixed type of data, similar to C structs and compiled to tuples.
+:::
+
+Erlang uses the concept of pattern matching in order to bind one or more
+variables to the particular values. It is used to assign variables
+(denoted by atoms) using more complex expressions that direct
+assignment. Consider the following examples:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+{X,b} = {a,b}.
+[10,[Y],15] = [10,[[1,2,3]],15].
+{X,X} = {a,b}.
+[A,2] = [10].
+```
+:::
+
+The first expression binds `X`{.literal} to `a`{.literal}, the second
+expressions binds `Y`{.literal} to the `[1,2,3]`{.literal} list, and the
+third and fourth expressions result in exceptions as pattern matching
+fails in these cases. We will briefly cover error handling later in the
+chapter.
+
+Another useful []{#id344 .indexterm}concept is list comprehensions,
+where you can iterate over a list and return a modified list using a
+filter function and a generator for the elements of the new list.
+Consider the following example:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+[X+1 || X <- [4,5,6], X rem 2 == 0].
+```
+:::
+
+The result is the `[5,7]`{.literal} list, all even elements are filtered
+and incremented by one in the new list. We can rewrite the preceding
+example using a recursive function, as Erlang enforces the functional
+programming style along with idioms derived from languages such as
+Prolog; the language does not provide a looping construct. The
+`filter_list_sample`{.literal} function implements the same behavior as
+the list comprehension using an `if`{.literal} statement:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+filter_list_sample(L) -> filter_list_sample_helper(L, []).
+filter_list_sample_helper([], Res) -> Res.
+filter_list_sample_helper([X|L], Res) -> 
+if 
+    X rem 2 == 0 -> 
+    filter_list_sample_helper(L, [X+1| Res]).
+    true -> 
+          filter_list_sample_helper(L, Res)
+end.
+```
+:::
+
+If you add this to the `sample`{.literal} module that we created
+earlier, export the` filter_list_sample`{.literal} function from the
+module, and recompile it, you can invoke the preceding function with the
+following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+sample:filter_list_sample([4,5,6]).
+```
+:::
+
+The result is returned in reverse order due to the recursion; implement
+a function that reverses the resulting list as an exercise. Note that if
+you have multiple definitions of the same function (in this case,
+`filter_list_sample_helper`{.literal}), you should separate them with a
+semicolon. Multiple expressions in the same function are separated by a
+comma. You can also use the `case`{.literal} expression instead of the
+`if`{.literal} expression in the preceding example, as shown in the
+following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+filter_list_sample_helper([X|L], Res) -> 
+case X rem 2 of
+0 -> filter_list_sample_helper(L, [X+1| Res]).
+    _ -> filter_list_sample_helper(L, Res)
+end.
+```
+:::
+
+The underscore (`_`{.literal}) indicates any match (in this case, this
+could be only 1).
+
+There are many scenarios where Erlang may throw an error, and we can
+differentiate between the three types of runtime errors, as follows:
+
+::: {.orderedlist}
+1.  [**regular errors**]{.strong}: Thrown[]{#id345 .indexterm} by an
+    `erlang:error()`{.literal} call. This is the equivalent of a
+    `throw`{.literal} statement in the programming languages such as C++
+    or Java, stacktrace is included as a part of the error.
+
+2.  [**throw errors**]{.strong}: Thrown []{#id346 .indexterm}by a
+    `throw()`{.literal} function. This is typically used to exit a
+    deeply nested function call and does include a stacktrace rather it
+    includes a value that was handled earlier in the call stack.
+
+3.  [**exit errors**]{.strong}: Thrown []{#id347 .indexterm}by an
+    `erlang:exit()`{.literal} call. This is used to signal that a
+    process is exiting (a value of `normal`{.literal} passed to the
+    function indicates that the process exits normally, other exit codes
+    indicate an error).
+:::
+
+All the types of[]{#id348 .indexterm} errors can be caught using a
+`try … catch`{.literal} block. The following example demonstrates the
+use of the different types of exceptions in Erlang:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+exception_sample(Val) -> 
+    case Val of
+        1 -> throw("Invalid value: 1").
+        2 -> error("Invalid value: 2").
+        3 -> exit("Invalid value: 3").
+        _ -> "Success"
+    end.
+    
+exception_handler(Val) ->
+    try 
+        exception_sample(Val)
+    catch
+        error: Error -> {error, Error}.
+        throw: Error -> {throw, Error}.
+        exit: Error -> {exit, Error}    
+    end.
+```
+:::
+
+Export the `exception_handler()`{.literal} function as part of the
+sample module and execute it with different arguments to see how it
+behaves:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+sample:exception_handler(1).
+sample:exception_handler(2).
+sample:exception_handler(3).
+sample:exception_handler(4).
+```
+:::
+
+You should receive the following output:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+{throw,"Invalid value: 1"}
+{error,"Invalid value: 2"}
+{exit,"Invalid value: 3"}
+"Success"
+```
+:::
+
+When an Erlang process exits as a result of an error that is not handled
+by the process, you will get a result that is in a format similar to the
+RabbitMQ node crashing as RabbitMQ nodes are started as Erlang
+processes.
+
+So far, we discussed []{#id349 .indexterm}the basic constructs of the
+language. However, Erlang excels when it comes to distributed
+programming. Processes in Erlang are lightweight, they are created by
+the Erlang VM without actually interacting with the underlying operating
+system (and creating any OS-level threads or processes). Communication
+between processes is possible via message passing. The Erlang VM takes
+the responsibility of handling the process execution underneath on one
+or more CPUs in the system on which the Erlang VM runs. Thus, reducing
+context switching\' you don\'t need to go to the kernel scheduler to
+switch between the currently executing threads. This, and the ability to
+dynamically allocate process stacks (thus saving the effort to reserve a
+lot of RAM), provides the possibility of creating thousands of Erlang
+processes at once. If any two processes need to communicate on the same
+machine, you can do it directly using the `!`{.literal} [ ]{.strong}and
+`receive`{.literal} expression in order to exchange messages, as
+demonstrated in the following example:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+sample_sender(Pid, Message) -> 
+    Pid ! Message.
+
+sample_receiver() -> 
+    receive
+        Message -> io:format(Message, [])
+    end.
+
+start() -> 
+    Preceiver = spawn(?MODULE, sample_receiver, []),
+    spawn(?MODULE, sample_sender, [Preceiver, "Test message."]).
+```
+:::
+
+We create a sender and receiver as separate processes in the
+`start()`{.literal} method using the `spawn`{.literal} function that
+creates a process based on a module function, along with the parameter
+passed to that function upon process creation. The `?MODULE`{.literal}
+macros refer to the current module, you can think of the Erlang macros
+as C++ preprocessor directives. The `sample_sender()`{.literal} function
+sends a message using the `!`{.literal} operator to the process
+identified by a particular []{#id350 .indexterm} [**pid**]{.strong}
+([**proportional--integral--derivative**]{.strong}). The
+`sample_receiver()`{.literal} method uses the `receive`{.literal}
+expression to wait for a message and is blocked until a message is
+received. The message is printed on the standard output using the
+built-in `io:format`{.literal} Erlang function. You need to export all
+the three functions from the `sample`{.literal} module and run the demo
+using the following line of code from the Erlang REPL:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+sample:start().
+```
+:::
+
+In this particular example, the processes run in the same Erlang VM.
+However, if the processes are started on a remote machine, then several
+concerns are further raised. The most important issues to solve are as
+follows:
+
+::: {.itemizedlist}
+-   How do we exchange the process identifiers among the processes? How
+    are the processes aware of each other?
+
+-   How can you prevent tampering of communication from a third party
+    among the processes?
+:::
+
+The answer to the []{#id351 .indexterm}first question is the
+`register()`{.literal} built-in function that allows you to map a
+symbolic name to a process identifier. This mapping information is
+stored in an Erlang register, and when a process needs to communicate
+with another remote process, it must know the address of the machine
+where the other process resides along with the symbolic name of the
+remote process. The rest is handled by Erlang behind the scenes.
+
+The answer to the second question is the Erlang cookies that we
+mentioned in the earlier chapters when we talked about RabbitMQ
+clustering. Erlang cookies are stored in an .`erlang.cookie`{.literal}
+file and are used by the Erlang processes as a shared secret. A node is
+not obliged to use the same cookie for all other remote nodes---a
+different cookie can be specified for communication with a remote node.
+This can be accomplished using the `erlang:set_cookie()`{.literal}
+method that uses the remote node identifier and Erlang cookie instance
+as arguments. To retrieve the current cookie used by the node, you can
+use the `erlang:get_cookie()`{.literal} method. In case no cookie is in
+use, the method will return `nocookie`{.literal}.
+
+Our brief primer of the Erlang language should be sufficient in order to
+make use of the utilities provided by the language for further
+troubleshooting of your RabbitMQ instances. You can retrieve the name of
+the current node with the following command:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+node().
+```
+:::
+
+You can also retrieve the names and the ports of the processes that are
+registered by the [**EPMD**]{.strong} ([**Erlang Port Mapper
+Daemon**]{.strong}) process []{#id352 .indexterm}running on the same
+Erlang VM:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+net_adm:names().
+```
+:::
+
+Assuming that we have started our three-node cluster on the same
+machine, we should observe the following output:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+{ok,[{"rabbit",25672},
+     {"instance1",25701},
+     {"instance2",25702}]}
+```
+:::
+
+The ports that you see for each node are the ports assigned to the
+Erlang processes for each RabbitMQ instance (in the previous case, 20000
++ the name of the RabbiqMQ instance port).
+
+We can also use the `rpc:call`{.literal} function in order to execute a
+function in a particular local/remote Erlang process (and this could be
+the process of a RabbitMQ instance). You can also use the different
+Erlang utilities, such as the `rpc:call()`{.literal} function, to
+execute the commands on remote processes or retrieve the information
+about these processes.
+:::
+
+::: {.section lang="en" lang="en"}
+::: {.titlepage}
+<div>
+
+<div>
+
+#### []{#ch08lvl3sec15}The Erlang crash dump {#the-erlang-crash-dump .title}
+
+</div>
+
+</div>
+:::
+
+The []{#id353 .indexterm}Erlang crash dump file is created in the
+current working directory of a Rabbit instance when it crashes. The
+crash dump file contains useful statistics that are collected at the
+time of the crash along with the information about the processes that
+are affected as part of the crash. The reason for the node failure is
+indicated by the line starting with the word []{#id354 .indexterm}
+[**slogan**]{.strong}. For example, the following command indicates that
+there is a problem with starting up of a node (without providing more
+details as a part of the reason):
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+Slogan: init terminating in do_boot ()
+```
+:::
+
+You can use the knowledge gained from the previous section to inspect
+the information that is collected in the crash dump or better, use the
+[**Crashdump Viewer**]{.strong} GUI utility to inspect the crash dump.
+To start the utility, invoke the following commnad from the Erlang REPL:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+crashdump_viewer:start().
+```
+:::
+
+After the tool is started, you will be prompted to select the crash dump
+file. After the file is selected, the tool will divide the information
+from the file into proper sections and tables for easier inspection, as
+follows:
+
+::: {.mediaobject}
+![](2_files/4565OS_08_01.jpg)
+:::
+
+We will []{#id355 .indexterm}expand further on the concept of
+troubleshooting when we discuss the internal architecture of the message
+broker. If you get an error that contains:
+`init terminating in do_boot()`{.literal}, then there are several things
+that might be the root cause of the problem (make sure that you analyze
+the crash dump for more information on the problem):
+
+::: {.itemizedlist}
+-   Insufficient permissions on some of the RabbitMQ folders and files.
+
+-   Corrupt RabbitMQ database. In this case, delete the contents of the
+    `%APPDATA%\RabbitMQ`{.literal} folder (in Windows) and restore it
+    using a recent backup, if this is at all possible.
+
+-   Check the version of your Erlang installation and if it does not
+    match your OS architecture (32/64-bit), reinstall it.
+
+
+
+[]{#ch08lvl1sec53}Problems with starting/stopping RabbitMQ nodes {#problems-with-startingstopping-rabbitmq-nodes .title style="clear: both"}
+----------------------------------------------------------------
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+:::
+
+Consider []{#id356 .indexterm}that you have configured a running cluster
+with three nodes and one of your nodes suddenly fails. When you try to
+bring up that node using the following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+rabbitmq-server.bat
+```
+:::
+
+You get the dreadful `BOOT FAILED`{.literal} message along with an error
+description message of `timeout_waiting_for_tables`{.literal} and an
+Erlang stacktrace, as follows:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+##########
+              Starting broker...
+
+BOOT FAILED
+===========
+
+Error description:
+   {boot_step,database,
+       {error,
+           {timeout_waiting_for_tables,
+               [rabbit_user,rabbit_user_permission,rabbit_vhost,
+                rabbit_durable_route,rabbit_durable_exchange,
+                rabbit_runtime_parameters,rabbit_durable_queue]}}}
+
+Log files (may contain more information):
+   D:/software/RabbitMQ/rabbitmq_server-3.4.4/log/rabbit@MARTIN.log
+   D:/software/RabbitMQ/rabbitmq_server-3.4.4/log/rabbit@MARTIN-sasl.log
+
+Stack trace:
+   [{rabbit_table,wait,1,[]},
+    {rabbit_table,check_schema_integrity,0,[]},
+    {rabbit_mnesia,ensure_schema_integrity,0,[]},
+    {rabbit_mnesia,init_db,3,[]},
+    {rabbit_mnesia,init_db_and_upgrade,3,[]},
+    {rabbit_mnesia,init,0,[]},
+    {rabbit,'-run_step/3-lc$^1/1-1-',2,[]},
+    {rabbit,run_step,3,[]}]
+```
+:::
+
+The error message []{#id357 .indexterm}tells you that there is something
+wrong while loading the data from the Mnesia database; however, it
+doesn\'t give you enough information on the exact cause of the problem.
+One thing you can do is that you can simply remove the node database
+files from the `rabbit@DOMAIN-mnesia`{.literal} and
+`rabbit@DOMAIN-plugins-expand`{.literal} folders that provide the
+storage of the Mnesia tables and the expanded plugins that are used by
+the RabbitMQ node. If you have a recent backup of your Mnesia database,
+you can try to use it to restore your database data. However, if using a
+backup is not an option, you need to perform some more troubleshooting
+in order to find and fix the problem. The first obvious thing to do is
+to inspect the RabbitMQ logs, as suggested earlier. However, doing so
+may not always give you more information than the error log that is
+displayed in the console. Moreover, there is a chance that your Mnesia
+database is not corrupt. You can try the following options:
+
+::: {.itemizedlist}
+-   If you are running a single (non-clustered) RabbitMQ node, you may
+    try to specify the full RabbitMQ node name, along with the hostname
+    (if you have changed the hostname of the machine on which you
+    startup your nodes, you may get
+    `timeout_waiting_for_tables`{.literal} when Mnesia tries to fire
+    up), as follows:
+
+    ::: {.informalexample}
+    ::: {.toolbar .clearfix}
+    Copy
+    :::
+
+    ``` {.programlisting .language-markup}
+    set RABBITMQ_NODENAME=rabbit@<DOMAIN>
+    ```
+    :::
+
+-   If you are running the node in a clustered environment and the other
+    nodes have not started, the RabbitMQ node may wait for the other
+    nodes to start by default within 30 seconds before throwing a
+    `timeout_waiting_for_tables`{.literal} error message. In that case,
+    you can try to startup the other nodes in the cluster in 30 seconds
+    from starting the current node and see if this resolves the problem.
+:::
+
+Another []{#id358 .indexterm}common issue that may prevent the startup
+of clustered nodes is network partitioning. Consider that you can have a
+two- or three-node cluster and the communication links between the nodes
+fail. Each node becomes isolated from the other and thinks that the
+other nodes have failed and hence, becomes a master node. If you fix the
+communication links between the nodes and try to restart them, RabbitMQ
+will detect that there is more than one master node and startup of nodes
+may fail with an
+`incosistent database, running_partitioned_network`{.literal} error
+message on subsequent master nodes that try to startup and join the
+cluster. You can detect this condition by running the following command:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+rabbitmqctl.bat cluster_status
+```
+:::
+
+If you see a non--empty partition in the `partitions`{.literal}
+attribute from the log, then a network partitioning was detected by
+RabbitMQ. In normal circumstances, this list is empty:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+Cluster status of node rabbit@DOMAIN...
+[{nodes,[{disc,[instance1@Domain,instance2@Domain,rabbit@DOMAIN]}]},
+ {running_nodes,[instance2@Domain,instance1@Martin,rabbit@DOMAIN]},
+ {cluster_name,<<"rabbit@Domain">>},
+ {partitions,[]}]
+```
+:::
+
+While each node can act as a standalone master, this means that it may
+define new exchanges, queues, and bindings without the knowledge of
+other nodes. However, if you want to restore the cluster, you need to
+select one node as the master and rejoin the others to the cluster using
+this node. Before rejoining a node to the cluster, you may also want to
+reset its state. Assuming that the `rabbit@DOMAIN`{.literal} node is
+your preferred master node, you can issue the following commands to
+rejoin the `instance1`{.literal} node to the cluster:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+rabbitmqctl –n instance1 stop_app
+rabbitmqctl –n instance1 reset
+rabbitmqctl –n instance1 join_cluster rabbit@DOMAIN
+rabbitmqctl –n instance1 start_app
+```
+:::
+
+For more information on network partitioning, you can refer to the
+[**Network Partitions**]{.strong} entry in the RabbitMQ server
+documentation.
+
+Another reason[]{#id359 .indexterm} that your node may fail to startup
+is due to a resource that is already used by another RabbitMQ instance
+running on the same machine. If this is a network port that is already
+taken by the first instance, then the second instance will fail to
+start. If the first instance is running, for example, the management
+plugin on a default port and you try to start the second instance with
+the management plugin enabled, you will get an error message similar to
+the following:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+  ##########
+Starting broker...
+
+BOOT FAILED
+===========
+
+Error description:
+   {could_not_start,rabbitmq_management,
+   {could_not_start_listener,[{port,15672}],eaddrinuse}}
+
+Log files (may contain more information):
+   D:/software/RabbitMQ/rabbitmq_server-3.4.4/log/instance1 .log
+   D:/software/RabbitMQ/rabbitmq_server-3.4.4/log/instance1 -sasl.log
+
+{"init terminating in do_boot",{rabbit,failure_during_boot,{could_not_start,rabb
+itmq_management,{could_not_start_listener,[{port,15672}],eaddrinuse}}}}
+
+Crash dump was written to: erl_crash.dump
+init terminating in do_boot ()
+```
+:::
+
+This is easily solved by disabling the management plugin for that
+instance. Assuming that this is the instance1 instance, you can execute
+the following before starting the node:
+
+::: {.informalexample}
+::: {.toolbar .clearfix}
+Copy
+:::
+
+``` {.programlisting .language-markup}
+rabbitmq-plugins.bat -n instance1 disable rabbitmq_management
+```
+:::
+
+As discussed in the earlier chapters, the management plugin is aware of
+clustering.
+
+
+
+[]{#ch08lvl1sec54}Problems with message delivery {#problems-with-message-delivery .title style="clear: both"}
+------------------------------------------------
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+:::
+
+In certain broker []{#id360 .indexterm}configurations, it may happen
+that the messages are not delivered as expected. This could either be
+due to a misconfigured queue TTL, or a poor network combined with the
+lack of publisher confirms, or AMQP transactions to support reliable
+delivery. To inspect what is going on with messages in the broker, you
+can install the `Firehose`{.literal} plugin that allows you to inspect
+the traffic flowing through the message broker. You []{#id361
+.indexterm}should be careful when enabling the plugin in a production
+environment as it may slow down the performance due to the additional
+messages that it sends to the `amq.rabbitmq.trace`{.literal} exchange
+for each message entering the broker and each message exiting it. The
+plugin is enabled for a particular node and `vhost`{.literal}. The
+[**RabbitMQ Tracer**]{.strong} plugin builds on top of the Firehose
+plugin and provides a user interface to capture and trace messages. You
+can review the additional configuration options for both the plugins in
+the RabbitMQ documentation.
+
+
+
+[]{#ch08lvl1sec55}Summary {#summary .title style="clear: both"}
+-------------------------
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+:::
+
+In this chapter, we covered the essential mechanisms to troubleshoot the
+problems that may occur as part of a RabbitMQ instance. We discussed a
+general approach towards troubleshooting, along with an overview of some
+common problems that may occur during startup or shutdown of the message
+broker. For more detailed troublshooting, we introduced the fundamentals
+of the Erlang programming language and we will reuse that knowledge when
+we discuss how to extend RabbitMQ. In the next chapter, we will further
+expand on the concepts that are covered in this chapter by discussing
+how to troubleshoot security-related issues.
+
+
+
+[]{#ch08lvl1sec56}Exercises {#exercises .title style="clear: both"}
+---------------------------
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+:::
+
+::: {.orderedlist}
+1.  How does the concept of troubleshooting apply in terms of RabbitMQ?
+
+2.  What problems may occur during the startup/shutdown of the message
+    broker?
+
+3.  What are the funs in Erlang?
+
+4.  How is Erlang handling the process creation?
+
+5.  What type of runtime exceptions do we have in Erlang?
+
+6.  How is an Erlang module created and compiled?
+
+7.  What information does the Erlang crash dump contain?
+
+8.  What is the Firehose plugin used for?
