@@ -146,7 +146,7 @@ We'll call our message publisher (sender) Send and our message consumer
 message, then exit.
 
 In
-[Send.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/Send.java),
+[Send.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/Send.java),
 we need some classes imported:
 
 ``` {.lang-java .hljs}
@@ -203,7 +203,7 @@ exist already. The message content is a byte array, so you can encode
 whatever you like there.
 
 [Here's the whole Send.java
-class](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/Send.java).
+class](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/Send.java).
 
 > #### Sending doesn't work!
 >
@@ -226,7 +226,7 @@ out.
 ![[|||] -\> (C)](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_java/receiving.webp)
 
 The code (in
-[Recv.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/Recv.java))
+[Recv.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/Recv.java))
 has almost the same imports as Send:
 
 ``` {.lang-java .hljs}
@@ -285,7 +285,7 @@ channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 ```
 
 [Here's the whole Recv.java
-class](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/Recv.java).
+class](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/Recv.java).
 
 ### Putting it all together
 

@@ -284,7 +284,7 @@ Putting It All Together
 -----------------------
 
 The
-[PublisherConfirms.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/PublisherConfirms.java)
+[PublisherConfirms.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/PublisherConfirms.java)
 class contains code for the techniques we covered. We can compile it,
 execute it as-is and see how they each perform:
 

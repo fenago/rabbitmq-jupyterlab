@@ -250,9 +250,9 @@ java -cp $CP EmitLogDirect error "Run. Run. Or it will explode."
 ```
 
 (Full source code for [(EmitLogDirect.java
-source)](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/EmitLogDirect.java)
+source)](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/EmitLogDirect.java)
 and [(ReceiveLogsDirect.java
-source)](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/ReceiveLogsDirect.java))
+source)](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/ReceiveLogsDirect.java))
 
 Move on to [tutorial
 5](https://www.rabbitmq.com/tutorials/tutorial-five-java.html) to find

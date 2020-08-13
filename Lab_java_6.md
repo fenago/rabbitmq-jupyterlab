@@ -182,7 +182,7 @@ integer input. (Don't expect this one to work for big numbers, and it's
 probably the slowest recursive implementation possible).
 
 The code for our RPC server can be found here:
-[RPCServer.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCServer.java).
+[RPCServer.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/RPCServer.java).
 
 The server code is rather straightforward:
 
@@ -196,7 +196,7 @@ The server code is rather straightforward:
     send the response back.
 
 The code for our RPC client can be found here:
-[RPCClient.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCClient.java).
+[RPCClient.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/RPCClient.java).
 
 The client code is slightly more involved:
 
@@ -237,9 +237,9 @@ fibonacciRpc.close();
 
 Now is a good time to take a look at our full example source code (which
 includes basic exception handling) for
-[RPCClient.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCClient.java)
+[RPCClient.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/RPCClient.java)
 and
-[RPCServer.java](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCServer.java).
+[RPCServer.java](https://github.com/fenago/rabbitmq-jupyterlab/blob/master/java/RPCServer.java).
 
 Compile and set up the classpath as usual (see [tutorial
 one](https://www.rabbitmq.com/tutorials/tutorial-one-java.html)):
