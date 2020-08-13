@@ -11,17 +11,24 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 - Managing Your RabbitMQ Server
      `<host-ip>:<port>/lab/workspaces/lab_mastering_1`
+
 - Managing RabbitMQ
      `<host-ip>:<port>/lab/workspaces/lab_cb_1`
+
 - Performance Tuning for RabbitMQ
      `<host-ip>:<port>/lab/workspaces/lab_cb_2`
+
 - Managing RabbitMQ Error Conditions
      `<host-ip>:<port>/lab/workspaces/lab_cb_3`
+
 - Administration, Configuration, and Management
      `<host-ip>:<port>/lab/workspaces/lab_learning_1`
+
 - Performance Tuning and Monitoring
      `<host-ip>:<port>/lab/workspaces/lab_learning_2`
+
 - Troubleshooting
      `<host-ip>:<port>/lab/workspaces/lab_learning_3`
+     
 - Security
      `<host-ip>:<port>/lab/workspaces/lab_learning_4`
