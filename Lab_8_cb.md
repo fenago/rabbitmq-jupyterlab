@@ -478,25 +478,16 @@ The results for these two tests were as follows:
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_cookbook/6501OS_08_02.jpg)
 
-
 Test1
-
-
-
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_cookbook/6501OS_08_03.jpg)
 
-
 Test2
-
 
 
 As you can see, the  prefetch count can make the
 difference, especially when you have more consumers bound to the same
 queue.
-
-
-
 
 
 
