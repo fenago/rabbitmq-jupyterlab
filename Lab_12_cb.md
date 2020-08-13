@@ -1,10 +1,10 @@
 
 
-Chapter 12. Managing RabbitMQ Error Conditions
+Lab 12. Managing RabbitMQ Error Conditions
 -------------------------------------------------------
 
 
-In this chapter, we will cover the following topics:
+In this lab, we will cover the following topics:
 
 
 -   Monitoring RabbitMQ\'s behavior
@@ -220,7 +220,7 @@ library.
 
 To consume log messages, you can execute the Java main function in
 `Consumer.java`. You can find this in the book source archive
-in the directory `Chapter12/Recipe02/Java/src/rmqexample`. In
+in the directory `Lab12/Recipe02/Java/src/rmqexample`. In
 the following, we highlight the main steps:
 
 
@@ -350,7 +350,7 @@ previous recipe.
 To consume  trace messages, you can execute the Java
 main function  in `Consumer.java` that you
 can find in the book source archive in the directory
-`Chapter12/Recipe02/Java/src/rmqexample`. Here, we highlight
+`Lab12/Recipe02/Java/src/rmqexample`. Here, we highlight
 the main steps:
 
 

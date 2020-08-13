@@ -1,6 +1,6 @@
 
 
-Chapter 3. Administration, Configuration, and Management
+Lab 3. Administration, Configuration, and Management
 -----------------------------------------------------------------
 
 
@@ -10,7 +10,7 @@ could turn out to be quite daunting and onerous (consider a relational
 database, for example). However, the RabbitMQ team has provided very
 convenient facilities for administering and managing the message broker.
 
-Topics covered in the chapter:
+Topics covered in the lab:
 
 
 -   Administering RabbitMQ instances
@@ -60,7 +60,7 @@ considered in several directions:
 
 
 Some of  the preceding concepts are covered in
-subsequent chapters. We already saw how easy it is to start/stop/restart
+subsequent labs. We already saw how easy it is to start/stop/restart
 instances using the `rabbitmqctl` and
 `rabbitmq-server` utilities that are part of the standard
 RabbitMQ installation. Before diving into the nuts and bolts of RabbitMQ
@@ -109,7 +109,7 @@ log files and the Erlang [**SASL**] ([**System Application
 Support Libraries**]) log files, not to be confused with
 [**SASL**] ([**Simple Authentication and Security
 Layer**]), for which RabbitMQ also provides support, covered in
-[Chapter
+[Lab
 9](https://subscription.packtpub.com/book/application_development/9781783984565/9){.link},
 [*Security*]{.emphasis}. Erlang SASL provides support for topics such as
 error logging, alarm handling, and overload regulation.
@@ -1099,7 +1099,7 @@ broker, such as the `rabbitmq-server` utility, the
 `rabbitmq-service` utility (used in Windows to start RabbitMQ
 as a Windows service), or `rabbitmq-env.conf` (using in
 Unix-like operating systems by RabbitMQ to configure environment
-variables). At the beginning of the chapter we covered several such
+variables). At the beginning of the lab we covered several such
 variables related to the location of the RabbitMQ database, logs, and
 configuration file. Here are several more you can configure:
 
@@ -1116,7 +1116,7 @@ configuration file. Here are several more you can configure:
 
 -   `RABBITMQ_NODENAME`: The  name of the
     RabbitMQ broker instance (this is required in a clustered
-    configuration---more on that in the next chapter).
+    configuration---more on that in the next lab).
 
 -   `RABBITMQ_SERVICENAME`: The  name of
     the Windows service for the RabbitMQ broker instance.
@@ -1402,7 +1402,7 @@ Summary
 
 
 
-In this chapter,  we saw how to administer a
+In this lab,  we saw how to administer a
 standalone RabbitMQ broker along with its components, users, vhosts,
 permissions, queues, exchanges, bindings, and policies. We discussed the
 structure of a typical RabbitMQ installation (along with the parameters
@@ -1412,7 +1412,7 @@ variables and the `rabbitmq.config` file. We discussed
 administrative tasks such as backing up and restoring the RabbitMQ
 database, updating a RabbitMQ broker, and plugin installation and
 management of the broker using the management REST API. In the next
-chapter we will explore what clustering support the message broker
+lab we will explore what clustering support the message broker
 provides for the purpose of scalability.
 
 

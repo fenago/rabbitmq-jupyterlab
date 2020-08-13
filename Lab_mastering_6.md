@@ -1,6 +1,6 @@
 
 
-Chapter 6. Managing Your RabbitMQ Server
+Lab 6. Managing Your RabbitMQ Server
 -------------------------------------------------
 
 
@@ -29,7 +29,7 @@ provides support for the following:
 We can manage the RabbitMQ server using command-line tool called
 `rabbitmqctl` using a plugin called [*Management
 Plugin*]{.emphasis}, that is provided by default from RabbitMQ and
-accessing RabbitMQ using the REST APIs. Therefore, our chapter is
+accessing RabbitMQ using the REST APIs. Therefore, our lab is
 designed with the following topics:
 
 
@@ -150,7 +150,7 @@ After locating the, management URL, you can see a dashboard, as shown
 here:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image6_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image6_lab6.jpg)
 
 
 Dashboard of Management Web Interface
@@ -161,7 +161,7 @@ In the dashboard interface, you  can view the
 RabbitMQ server statistics and information related to current 
 connections, channels, exchanges, queues, and consumers.
 Additionally, the dashboard can be used for monitoring; we will cover
-this in [Chapter
+this in [Lab
 7](https://subscription.packtpub.com/book/application_development/9781783981526/7){.link},
 [*Monitoring*]{.emphasis}. Moreover, you have a menu on the header side
 that redirects to the detailed part of each module.
@@ -170,7 +170,7 @@ After clicking on the [**Connections**] tab on the menu, you
 can see the [**Connections**] module in the following image:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image7_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image7_lab6.jpg)
 
 
 Connections
@@ -188,7 +188,7 @@ The following image simply describes the [**Channels**] tab and
 its web page:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image8_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image8_lab6.jpg)
 
 
 Channels
@@ -204,7 +204,7 @@ The following image shows the
 plugin:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image9_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image9_lab6.jpg)
 
 
 Exchanges
@@ -223,7 +223,7 @@ exchange.
 The following image shows the [**Queues**] web page:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image10_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image10_lab6.jpg)
 
 
 Queues
@@ -243,7 +243,7 @@ Let\'s talk about the last item of our Management plugins called the
 [**Users**] web page, which is as shown in the following image:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image11_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image11_lab6.jpg)
 
 
 Users
@@ -291,7 +291,7 @@ overview of the REST API. Now, you are ready to send the request using
 the [**Send**] button, ah shown in the following image:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image12_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image12_lab6.jpg)
 
 
 Overview Request
@@ -306,7 +306,7 @@ Let\'s now move on to the queues  and their details
 with the following image:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image13_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image13_lab6.jpg)
 
 
 Queues Request
@@ -323,7 +323,7 @@ information about the current connections, which are
 established on the RabbitMQ server:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image14_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image14_lab6.jpg)
 
 
 Connections Request
@@ -336,7 +336,7 @@ fetch the information and statistics about the channels in the RabbitMQ
 server:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image15_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image15_lab6.jpg)
 
 
 Channels Request
@@ -347,7 +347,7 @@ Statistics and information about the  bindings can
 be easily fetched from the REST API as well.
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image16_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image16_lab6.jpg)
 
 
 Bindings Request
@@ -360,7 +360,7 @@ can easily fetch and show the permissions of the user as shown in
  the following screenshot:
 
 
-![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image17_chapter6.jpg)
+![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_mastering/image17_lab6.jpg)
 
 
 Permissions Request
@@ -394,6 +394,6 @@ command-line tool `rabbitmqctl`, Management plugin, and REST
 API. Therefore, we are comfortably managing our RabbitMQ server
 instances using the RabbitMQ provided structures.
 
-In the next chapter, we will introduce the monitoring of the RabbitMQ
+In the next lab, we will introduce the monitoring of the RabbitMQ
 server instances, such as monitoring the resource usage, monitoring the
 internal structures of RabbitMQ, and so on.

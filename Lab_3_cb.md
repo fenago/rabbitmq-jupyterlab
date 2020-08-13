@@ -1,10 +1,10 @@
 
 
-Chapter 3. Managing RabbitMQ
+Lab 3. Managing RabbitMQ
 -------------------------------------
 
 
-In this chapter we will cover:
+In this lab we will cover:
 
 
 -   Using vhosts
@@ -33,11 +33,11 @@ Introduction
 Once installed, RabbitMQ  just works; it\'s really a
 zero configuration service. However, RabbitMQ has a lot of configuration
 options, which make it very flexible and able to work in different
-environments. In this chapter we will see how to change the
+environments. In this lab we will see how to change the
 configuration to meet the requirements of your application.
 
 We will also begin to use the tools that we will treat in detail in the
-following chapters in order to show you how to monitor RabbitMQ with an
+following labs in order to show you how to monitor RabbitMQ with an
 application.
 
 
@@ -55,7 +55,7 @@ without worrying about name clashes. This is the same approach used by
 web servers with virtual hosts.
 
 You can find the simple Java example in the
-`Chapter03/Recipe01 `directory, which is identical to the
+`Lab03/Recipe01 `directory, which is identical to the
 example in the first recipe of the book, except for the usage of the
 vhost.
 
@@ -186,7 +186,7 @@ However, the same application can benefit from the usage of user
 permissions within the same vhost.
 
 We are going to see how to manage users and their permissions and how to
-use them in the Java example in `Chapter03/Recipe02`.
+use them in the Java example in `Lab03/Recipe02`.
 
 
 
@@ -372,7 +372,7 @@ operations, you can use the table at
 
 
 User permissions  refer just to AMQP operations. The
-RabbitMQ management plugin (more details later in this chapter) extends
+RabbitMQ management plugin (more details later in this lab) extends
 this permission model using user tags; it\'s possible to associate one
 or more arbitrary tag strings to any user.
 
@@ -466,7 +466,7 @@ configure the server:
 1.  On the server, create the  [**Certificate
     Authority**] ([**CA**]) directory stub as per the
     script in the example path
-    `Chapter03/Recipe03/certificates/01_setup_CA.sh`:
+    `Lab03/Recipe03/certificates/01_setup_CA.sh`:
 
 
 
@@ -482,10 +482,10 @@ configure the server:
 
 2.  Customize the `openssl` configuration file, which you can
     already find in
-    `Chapter03/Recipe03/certificates/testca/openssl.cnf`.
+    `Lab03/Recipe03/certificates/testca/openssl.cnf`.
 
 3.  Create the self-signed CA certificates as done in
-    `Chapter03/Recipe03/certificates/02_create_CA_certificates.sh`:
+    `Lab03/Recipe03/certificates/02_create_CA_certificates.sh`:
 
 
 
@@ -496,7 +496,7 @@ configure the server:
     
 
 4.  Create the  RabbitMQ server private key as in
-    `Chapter03/Recipe03/certificates/03_create_server_certificates.sh`:
+    `Lab03/Recipe03/certificates/03_create_server_certificates.sh`:
 
 
 
@@ -525,7 +525,7 @@ configure the server:
     
 
 7.  Copy  from
-    `Chapter03/Recipe03/certificates`, the CA certificate, the
+    `Lab03/Recipe03/certificates`, the CA certificate, the
     server certificate, and the server private key, which we have just
     created, to the absolute paths:
 
@@ -540,7 +540,7 @@ configure the server:
 
 8.  Create the RabbitMQ configuration file, `rabbitmq.config`,
     in the appropriate directory (`/etc/rabbitmq`) by copying
-    it from `Chapter03/Recipe03/rabbitmq.config`:
+    it from `Lab03/Recipe03/rabbitmq.config`:
 
 
 
@@ -573,7 +573,7 @@ configure the server:
 
 10. In the  Java client, the connection to the
     server is now made, as shown in
-    `Chapter03/Recipe03/src/rmqexample/Publish.java`:
+    `Lab03/Recipe03/src/rmqexample/Publish.java`:
 
 
 
@@ -728,7 +728,7 @@ RabbitMQ server:
 
 
 1.  Copy the certificates and the keys, created in the previous recipe,
-    from the `Chapter03/Recipe04/certificates` directory:
+    from the `Lab03/Recipe04/certificates` directory:
 
 
 
@@ -740,7 +740,7 @@ RabbitMQ server:
 
 2.  In the client certificate directory, create the client private key,
     as shown in
-    `Chapter03/Recipe04/certificates/04_create_client_certificates.sh`:
+    `Lab03/Recipe04/certificates/04_create_client_certificates.sh`:
 
 
 
@@ -783,7 +783,7 @@ RabbitMQ server:
 
 6.  Create a Java key store containing the server certificate protected
     with a password, as shown in
-    `Chapter03/Recipe04/certificates/05_create_keystore.sh`:
+    `Lab03/Recipe04/certificates/05_create_keystore.sh`:
 
 
 
@@ -1113,7 +1113,7 @@ the location. You can find the complete list of parameters at
 
 
 In this recipe we have just introduced the RabbitMQ configuration. In
-the next chapters, we will change some of the default parameters to tune
+the next labs, we will change some of the default parameters to tune
 the performance or configure the cluster.
 
 
@@ -1129,7 +1129,7 @@ RabbitMQ using the JSON API that you can access from the URL
 
 The scope of this example is to create a custom Python script, which
 performs some checks and sends an e-mail if it detects some errors. You
-can find the source code at `Chapter03/Recipe07`.
+can find the source code at `Lab03/Recipe07`.
 
 
 
@@ -1297,13 +1297,13 @@ Developing your own web applications to monitor RabbitMQ
 In this recipe we\'ll show you  how to create a
 custom web application to monitor the RabbitMQ logs. In order to check
 the logs, you can bind a queue to the `amq.rabbitmq.log`
-exchange, as we will see in [Chapter
+exchange, as we will see in [Lab
 12](https://subscription.packtpub.com/book/application_development/9781849516501/12){.link},
 [*Managing RabbitMQ Error Conditions*]{.emphasis}, with much more
 details.
 
 You can find the source code for this recipe in
-`Chapter03/Recipe08`.
+`Lab03/Recipe08`.
 
 
 
@@ -1535,7 +1535,7 @@ application.
 
 In order to try to run the example directly, you can go to the source
 code path in the book archive
-(`Chapter03`/`Recipe08`) and prepare a package using
+(`Lab03`/`Recipe08`) and prepare a package using
 Maven with [**mvn package**]. Then deploy the package to
 Tomcat.
 

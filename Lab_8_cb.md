@@ -1,10 +1,10 @@
 
 
-Chapter 8. Performance Tuning for RabbitMQ
+Lab 8. Performance Tuning for RabbitMQ
 ---------------------------------------------------
 
 
-In this chapter we will cover:
+In this lab we will cover:
 
 
 -   Multithreading and queues
@@ -38,7 +38,7 @@ Very often the application needs to be optimized on the client side:
 In both cases  messaging is a perfect fit. In order
 to optimize the network transfer rate, the AMQP standard prescribes that
 messages are transferred in bunches, and then consumed one by one by the
-client (refer to [Chapter
+client (refer to [Lab
 1](https://subscription.packtpub.com/book/application_development/9781849516501/1){.link},
 [*Working with AMQP*]{.emphasis}).
 
@@ -61,7 +61,7 @@ distribute the load and improve the total throughput.
 Why to optimize then? Well, to reduce cost. The cost of the hardware,
 electric power, cooling, or cloud computing resources.
 
-In this chapter, we will talk about the RabbitMQ performance, showing
+In this lab, we will talk about the RabbitMQ performance, showing
 some tips to improve the performance on both the client side and
 eventually modifying the broker parameters.
 
@@ -105,7 +105,7 @@ different aspects, but the steps needed to accomplish them are very
 similar.
 
 You can use the code from the book repository in the directory
-`Chapter08/Recipe02`.
+`Lab08/Recipe02`.
 
 
 
@@ -313,7 +313,7 @@ don\'t see any message as follows:
 ### Tip
 
 By default, on Linux RabbitMQ, log files are placed in
-`/var/log/rabbitmq`. You can find more information in [Chapter
+`/var/log/rabbitmq`. You can find more information in [Lab
 12](https://subscription.packtpub.com/book/application_development/9781849516501/12){.link},
 [*Managing RabbitMQ Error Conditions*]{.emphasis}.
 
@@ -348,7 +348,7 @@ the bandwidth. Both noAck and prefetch are used by the consumers.
 
 In this example, we are going to create one producer and one consumer
 using these parameters. You can find the source code at
-`Chapter08/Recipe03`.
+`Lab08/Recipe03`.
 
 
 
@@ -432,7 +432,7 @@ client-side parameters to improve the performance and the bandwidth.
 To set the  prefetch, use
 `basicQos(prefetch_count)` (refer to step 3).
 
-We have already seen the `channel QoS` parameter in [Chapter
+We have already seen the `channel QoS` parameter in [Lab
 1](https://subscription.packtpub.com/book/application_development/9781849516501/1){.link},
 Working with AMQP, [*Distributing Messages to Many
 Consumers*]{.emphasis}, where the messages are acknowledged one by one,
@@ -442,7 +442,7 @@ The prefetch count is the maximum number of unacknowledged messages: a
 large value will let the client prefetch many messages in advance
 without waiting for the acks of the messages being processed.
 
-As stated at the beginning of the chapter, there is not a one-for-all
+As stated at the beginning of the lab, there is not a one-for-all
 rule when optimizing. In fact, improving the prefetch count can be
 counterproductive when the per message processing time is important, and
 we need to distribute and balance the processing.
@@ -647,7 +647,7 @@ That\'s not as bad as it might seem. On one side, the distribution
 toward the nodes of the cluster is performed in parallel, so the
 overhead does not grow linearly with the number of nodes. On the other
 side, the replication is usually limited to two or three replicas at the
-most, as we saw in [Chapter
+most, as we saw in [Lab
 7](https://subscription.packtpub.com/book/application_development/9781849516501/7){.link},
 [*Developing High-availability Applications*]{.emphasis}.
 
@@ -671,7 +671,7 @@ We performed a test using the following environment:
 The tests performed are as follows:
 
 
--   [**Test 1**]: Create a mirror (as we saw in [Chapter
+-   [**Test 1**]: Create a mirror (as we saw in [Lab
     7](https://subscription.packtpub.com/book/application_development/9781849516501/7){.link},
     [*Developing High-availability Applications*]{.emphasis}) using the
     configuration, as shown in the following screenshot:
@@ -759,7 +759,7 @@ Finding the right compromise between performance and reliability is very
 hard because there are lots of variables inside a distributed
 application. A typical error is trying to optimize each single
 application flow losing scalability or eventually high-availability
-benefits. This chapter presents extreme situations, but as we have seen,
+benefits. This lab presents extreme situations, but as we have seen,
 there are margins for improvement.
 
 

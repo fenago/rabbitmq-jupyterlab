@@ -1,18 +1,18 @@
 
 
-Chapter 8. Troubleshooting
+Lab 8. Troubleshooting
 -----------------------------------
 
 
 Running and maintaining a system successfully requires a good
 understanding of its components along with the various utilities that
 can be used to troubleshoot problems occurring in any of these
-components. In this chapter, we will look into some techniques that can
+components. In this lab, we will look into some techniques that can
 be applied to troubleshoot the problem that is occurring with your
 RabbitMQ instances along with several common issues occurring in
 practice.
 
-The topics to be covered in the chapter are as follows:
+The topics to be covered in the lab are as follows:
 
 
 -   General troubleshooting approach
@@ -34,7 +34,7 @@ by Erlang to troubleshoot problems occurring in  the
 message broker. The variety of errors occurring may range from problems
 relating to starting/stopping the broker instance to performance
 issues---we already covered performance tuning and monitoring in the
-previous chapter; therefore, you can already apply that knowledge to
+previous lab; therefore, you can already apply that knowledge to
 troubleshooting. We will use a  
 [**top-down**] approach to troubleshoot issues, as follows:
 
@@ -71,7 +71,7 @@ In the preceding example, we are checking the status of the
 `instance1` RabbitMQ node. You will observe an output of the
 `status` command similar to the following (we are omitting
 resource-related statistics, such as memory usage and number of
-processes, as we already covered them in the previous chapter):
+processes, as we already covered them in the previous lab):
 
 
 
@@ -321,7 +321,7 @@ troubleshooting.
 To be  able to dig into the root cause of a problem
 requires a good understanding of the Erlang programming language. In
 this section, we will cover the basics of Erlang and make use of this
-knowledge in the last chapter of the book, when we discuss how to create
+knowledge in the last lab of the book, when we discuss how to create
 a plugin for RabbitMQ and how to implement RabbitMQ.
 
 To begin, you need to add the `<erlang_home>\bin` directory to
@@ -628,7 +628,7 @@ The first expression binds `X` to `a`, the second
 expressions binds `Y` to the `[1,2,3]` list, and the
 third and fourth expressions result in exceptions as pattern matching
 fails in these cases. We will briefly cover error handling later in the
-chapter.
+lab.
 
 Another useful  concept is list comprehensions,
 where you can iterate over a list and return a modified list using a
@@ -875,7 +875,7 @@ where the other process resides along with the symbolic name of the
 remote process. The rest is handled by Erlang behind the scenes.
 
 The answer to the second question is the Erlang cookies that we
-mentioned in the earlier chapters when we talked about RabbitMQ
+mentioned in the earlier labs when we talked about RabbitMQ
 clustering. Erlang cookies are stored in an .`erlang.cookie`
 file and are used by the Erlang processes as a shared secret. A node is
 not obliged to use the same cookie for all other remote nodes---a
@@ -1216,7 +1216,7 @@ rabbitmq-plugins.bat -n instance1 disable rabbitmq_management
 ```
 
 
-As discussed in the earlier chapters, the management plugin is aware of
+As discussed in the earlier labs, the management plugin is aware of
 clustering.
 
 
@@ -1250,14 +1250,14 @@ Summary
 
 
 
-In this chapter, we covered the essential mechanisms to troubleshoot the
+In this lab, we covered the essential mechanisms to troubleshoot the
 problems that may occur as part of a RabbitMQ instance. We discussed a
 general approach towards troubleshooting, along with an overview of some
 common problems that may occur during startup or shutdown of the message
 broker. For more detailed troublshooting, we introduced the fundamentals
 of the Erlang programming language and we will reuse that knowledge when
-we discuss how to extend RabbitMQ. In the next chapter, we will further
-expand on the concepts that are covered in this chapter by discussing
+we discuss how to extend RabbitMQ. In the next lab, we will further
+expand on the concepts that are covered in this lab by discussing
 how to troubleshoot security-related issues.
 
 

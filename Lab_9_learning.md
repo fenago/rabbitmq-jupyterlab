@@ -1,5 +1,5 @@
 
-Chapter 9. Security
+Lab 9. Security
 ----------------------------
 
 
@@ -8,7 +8,7 @@ into account. As RabbitMQ instances can be used to carry sensitive
 application data or affect the stability of an entire system, we need to
 make sure that our RabbitMQ deployments are secured properly.
 
-The topics covered in this chapter are as follows:
+The topics covered in this lab are as follows:
 
 
 -   Types of threats
@@ -488,7 +488,7 @@ HTTP access denied: user 'Martin' - Not management user
 The LDAP plugin provides additional configurations such as SSL support
 for the LDAP communication; you can refer to the plugin documentation.
 The authentication backend can be used with other types of SASL
-authentication such as EXTERNAL, as we will see later in this chapter.
+authentication such as EXTERNAL, as we will see later in this lab.
 
 
 
@@ -517,7 +517,7 @@ this reason, you need to consider the following:
     implements a way to configure and enforce password policies.
 
 -   Setting SSL communication in order to prevent password sniffing, as
-    we will cover later in this chapter.
+    we will cover later in this lab.
 
 -   Deploying a proper monitoring solution on the broker workstation
     that takes into consideration the resource utilization factors that
@@ -544,7 +544,7 @@ Authorization
 
 After a  client is successfully authenticated by the
 message broker, it needs to perform some activities in some virtual
-hosts. In the earlier chapters, we saw that 
+hosts. In the earlier labs, we saw that 
 permissions are defined per vhost and live either internally
 in the message broker or externally. The RabbitMQ LDAP backend plugin
 that we saw earlier provides you with an ability to store permissions in
@@ -891,7 +891,7 @@ Summary
 
 
 
-In this chapter, we discussed the various aspects of security related to
+In this lab, we discussed the various aspects of security related to
 RabbitMQ and the types of vulnerabilities that can come up in practice
 and how to mitigate them. We covered the SASL mechanism provided by
 RabbitMQ for the purpose of authentication and extended further on this

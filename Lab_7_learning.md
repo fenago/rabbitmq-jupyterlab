@@ -1,17 +1,17 @@
 
 
-Chapter 7. Performance Tuning and Monitoring
+Lab 7. Performance Tuning and Monitoring
 -----------------------------------------------------
 
 
 Performance is a critical requirement for many applications. Each
 component in the communication flow between the components in a system
-impacts performance, including the message broker. In this chapter, we
+impacts performance, including the message broker. In this lab, we
 will focus our attention on optimizing and monitoring the performance of
 the RabbitMQ message broker and using various benchmarks to compare
 RabbitMQ against other brokers.
 
-The following topics will be covered in this chapter:
+The following topics will be covered in this lab:
 
 
 -   Performance tuning of RabbitMQ instances
@@ -38,7 +38,7 @@ significant improvement in performance predictability in version 2.8.1
 during the heavy loading of the message broker due to improved memory
 management. However, there are many scenarios that require the tuning of
 the broker based on the usage patterns and properties of the system, as
-we shall see in this chapter.
+we shall see in this lab.
 
 To understand better how to tune the performance of our broker, let\'s
 take a look at the standard three-tier broker setup:
@@ -71,7 +71,7 @@ message passing as follows:
     messages processed in the channel. One possible solution would be to
     establish a dedicated line between the sender/consumer and broker.
     Network tuning may improve the communication link; network
-    optimizations are out of scope for this chapter.
+    optimizations are out of scope for this lab.
 
 -   Broker optimizations are for focus points when we discuss
     performance tuning in terms of RabbitMQ. This involves a number of
@@ -429,7 +429,7 @@ improved performance. Another way that the performance might be affected
 based on your scenario would be using a custom backing store that allows
 you to store messages in a manner different from the default backing
 store that writes them to the disk. This can either improve or decrease
-the performance of your message broker. In [Chapter
+the performance of your message broker. In [Lab
 10](https://subscription.packtpub.com/book/application_development/9781783984565/10){.link},
 [*Internals*]{.emphasis} we will demonstrate how to write a RabbitMQ
 plugin that uses a custom database as a message store for RabbitMQ.
@@ -1571,7 +1571,7 @@ Summary
 
 
 
-In this chapter, we provided a list of performance tuning tips that can
+In this lab, we provided a list of performance tuning tips that can
 be used to build a proper approach for the tuning of the performance of
 the RabbitMQ message broker. We discussed how to measure the performance
 using the [**PerfTest**] utility provided by the RabbitMQ Java
