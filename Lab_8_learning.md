@@ -1,7 +1,8 @@
+<img align="right" src="./logo-small.png">
 
 
 Lab 8. Troubleshooting
------------------------------------
+------------------------
 
 
 Running and maintaining a system successfully requires a good
@@ -62,7 +63,7 @@ the `rabbitmq` utility as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat -n instance1 status
 ```
 
@@ -77,7 +78,7 @@ processes, as we already covered them in the previous lab):
 
 
 
-``` {.programlisting .language-markup}
+```
 [{pid,10312},
  {running_applications,
      [{rabbitmq_shovel,"Data Shovel for RabbitMQ","3.4.4"},
@@ -151,7 +152,7 @@ the platform that runs the RabbitMQ node:
 
 
 
-``` {.programlisting .language-markup}
+```
 =INFO REPORT==== 2-Sep-2015::20:41:47 ===
 Disabling disk free space monitoring on unsupported platform:
 {{'EXIT',{eacces,[{erlang,open_port,
@@ -175,7 +176,7 @@ SASL log file, the same error looks similar to the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 =CRASH REPORT==== 2-Sep-2015::20:41:45 ===
   crasher:
     initial call: rabbit_disk_monitor:init/1
@@ -204,7 +205,7 @@ a message such as the following in the logs:
 
 
 
-``` {.programlisting .language-markup}
+```
 =ERROR REPORT==== 20-Jul-2015::12:31:20 ===
 Channel error on connection <0.514.0> (127.0.0.1:63451 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 2:
 {amqp_error,not_found,"no queue 'test-queue' in vhost '/'",'basic.consume'}
@@ -218,7 +219,7 @@ you will get a message that can be easily interpreted, as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 =ERROR REPORT==== 2-Sep-2015::23:12:27 ===
 ** Node instance1@Domain not responding **
 ** Removing (timedout) connection **
@@ -233,7 +234,7 @@ following problem (as displayed in the RabbitMQ log file):
 
 
 
-``` {.programlisting .language-markup}
+```
 =ERROR REPORT==== 20-Jul-2015::12:25:41 ===
 ** Generic server rabbit_web_dispatch_registry terminating 
 ** Last message in was {add,rabbit_mgmt,
@@ -280,7 +281,7 @@ that we saw in the previous section could be:
 
 
 
-``` {.programlisting .language-markup}
+```
 ** Generic server rabbit_web_dispatch_registry terminating 
 ```
 
@@ -332,7 +333,7 @@ line:
 
 
 
-``` {.programlisting .language-markup}
+```
 erl
 ```
 
@@ -350,7 +351,7 @@ the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 erl –sname rabbit@DOMAIN
 ```
 
@@ -365,7 +366,7 @@ interpreter (don\'t forget the dot at the end of each expression):
 
 
 
-``` {.programlisting .language-markup}
+```
 (4 + 6) * 2.
 ```
 
@@ -377,7 +378,7 @@ the preceding example using two variables, as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 X = 4.
 Y = 6.
 (X + Y) * 2.
@@ -391,7 +392,7 @@ follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 X = 10.
 ```
 
@@ -402,7 +403,7 @@ You will get an error as shown in the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 ** exception error: no match of right hand side value 10
 ```
 
@@ -414,7 +415,7 @@ To reassign the variable, you need to first unbind it using the
 
 
 
-``` {.programlisting .language-markup}
+```
 f(X).
 ```
 
@@ -426,7 +427,7 @@ function:
 
 
 
-``` {.programlisting .language-markup}
+```
 f().
 ```
 
@@ -438,7 +439,7 @@ function out of it from the Erlang shell:
 
 
 
-``` {.programlisting .language-markup}
+```
 F = fun(X,Y) -> (X + Y) * 2 end.
 ```
 
@@ -452,7 +453,7 @@ following function:
 
 
 
-``` {.programlisting .language-markup}
+```
 F(4,6).
 ```
 
@@ -470,7 +471,7 @@ the file should match the `module` declaration):
 
 
 
-``` {.programlisting .language-markup}
+```
 -module(sample).
 -export([double/2]).
 double(X,Y) -> (X+Y) * 2.
@@ -500,7 +501,7 @@ to compile the module:
 
 
 
-``` {.programlisting .language-markup}
+```
 cd('D:/sources').(sample).
 ```
 
@@ -511,7 +512,7 @@ If compilation is successful, you will see a message as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 {ok,sample}
 ```
 
@@ -527,7 +528,7 @@ following:
 
 
 
-``` {.programlisting .language-markup}
+```
 sample:double(6,4).
 ```
 
@@ -541,7 +542,7 @@ module:
 
 
 
-``` {.programlisting .language-markup}
+```
 m(sample).
 sample:module_info().
 ```
@@ -616,7 +617,7 @@ assignment. Consider the following examples:
 
 
 
-``` {.programlisting .language-markup}
+```
 {X,b} = {a,b}.
 [10,[Y],15] = [10,[[1,2,3]],15].
 {X,X} = {a,b}.
@@ -639,7 +640,7 @@ Consider the following example:
 
 
 
-``` {.programlisting .language-markup}
+```
 [X+1 || X <- [4,5,6], X rem 2 == 0].
 ```
 
@@ -656,7 +657,7 @@ the list comprehension using an `if` statement:
 
 
 
-``` {.programlisting .language-markup}
+```
 filter_list_sample(L) -> filter_list_sample_helper(L, []).
 filter_list_sample_helper([], Res) -> Res.
 filter_list_sample_helper([X|L], Res) -> 
@@ -678,7 +679,7 @@ following:
 
 
 
-``` {.programlisting .language-markup}
+```
 sample:filter_list_sample([4,5,6]).
 ```
 
@@ -696,7 +697,7 @@ following:
 
 
 
-``` {.programlisting .language-markup}
+```
 filter_list_sample_helper([X|L], Res) -> 
 case X rem 2 of
 0 -> filter_list_sample_helper(L, [X+1| Res]).
@@ -737,7 +738,7 @@ use of the different types of exceptions in Erlang:
 
 
 
-``` {.programlisting .language-markup}
+```
 exception_sample(Val) -> 
     case Val of
         1 -> throw("Invalid value: 1").
@@ -765,7 +766,7 @@ behaves:
 
 
 
-``` {.programlisting .language-markup}
+```
 sample:exception_handler(1).
 sample:exception_handler(2).
 sample:exception_handler(3).
@@ -779,7 +780,7 @@ You should receive the following output:
 
 
 
-``` {.programlisting .language-markup}
+```
 {throw,"Invalid value: 1"}
 {error,"Invalid value: 2"}
 {exit,"Invalid value: 3"}
@@ -813,7 +814,7 @@ demonstrated in the following example:
 
 
 
-``` {.programlisting .language-markup}
+```
 sample_sender(Pid, Message) -> 
     Pid ! Message.
 
@@ -848,7 +849,7 @@ using the following line of code from the Erlang REPL:
 
 
 
-``` {.programlisting .language-markup}
+```
 sample:start().
 ```
 
@@ -895,7 +896,7 @@ the current node with the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 node().
 ```
 
@@ -909,7 +910,7 @@ Erlang VM:
 
 
 
-``` {.programlisting .language-markup}
+```
 net_adm:names().
 ```
 
@@ -921,7 +922,7 @@ machine, we should observe the following output:
 
 
 
-``` {.programlisting .language-markup}
+```
 {ok,[{"rabbit",25672},
      {"instance1",25701},
      {"instance2",25702}]}
@@ -961,7 +962,7 @@ details as a part of the reason):
 
 
 
-``` {.programlisting .language-markup}
+```
 Slogan: init terminating in do_boot ()
 ```
 
@@ -975,7 +976,7 @@ To start the utility, invoke the following commnad from the Erlang REPL:
 
 
 
-``` {.programlisting .language-markup}
+```
 crashdump_viewer:start().
 ```
 
@@ -1021,7 +1022,7 @@ bring up that node using the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmq-server.bat
 ```
 
@@ -1034,7 +1035,7 @@ Erlang stacktrace, as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 ##########
               Starting broker...
 
@@ -1091,7 +1092,7 @@ database is not corrupt. You can try the following options:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     set RABBITMQ_NODENAME=rabbit@<DOMAIN>
     ```
     
@@ -1120,7 +1121,7 @@ cluster. You can detect this condition by running the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat cluster_status
 ```
 
@@ -1133,7 +1134,7 @@ RabbitMQ. In normal circumstances, this list is empty:
 
 
 
-``` {.programlisting .language-markup}
+```
 Cluster status of node rabbit@DOMAIN...
 [{nodes,[{disc,[instance1@Domain,instance2@Domain,rabbit@DOMAIN]}]},
  {running_nodes,[instance2@Domain,instance1@Martin,rabbit@DOMAIN]},
@@ -1155,7 +1156,7 @@ rejoin the `instance1` node to the cluster:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl –n instance1 stop_app
 rabbitmqctl –n instance1 reset
 rabbitmqctl –n instance1 join_cluster rabbit@DOMAIN
@@ -1180,7 +1181,7 @@ the following:
 
 
 
-``` {.programlisting .language-markup}
+```
   ##########
 Starting broker...
 
@@ -1211,7 +1212,7 @@ the following before starting the node:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmq-plugins.bat -n instance1 disable rabbitmq_management
 ```
 

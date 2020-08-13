@@ -1,6 +1,7 @@
+<img align="right" src="./logo-small.png">
 
 
-Lab 7. Performance Tuning and Monitoring
+Lab. Performance Tuning and Monitoring
 -----------------------------------------------------
 
 
@@ -119,7 +120,7 @@ using the `rabbitmqctl` utility as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl set_vm_memory_high_watermark 0.7
 ```
 
@@ -131,7 +132,7 @@ been set successfully:
 
 
 
-``` {.programlisting .language-markup}
+```
 Setting memory threshold on rabbit@DOMAIN to 0.7 ...
 ```
 
@@ -146,7 +147,7 @@ you may want to set the parameter to each of them to something less than
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl set_vm_memory_high_watermark 0.25
 rabbitmqctl -n instance1 set_vm_memory_high_watermark 0.25
 rabbitmqctl -n instance2 set_vm_memory_high_watermark 0.25
@@ -166,7 +167,7 @@ RabbitMQ node as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl eval "application:set_env(rabbit, vm_memory_high_watermark_paging_ratio, 0.8). "
 ```
 
@@ -377,7 +378,7 @@ code:
 
 
 
-``` {.programlisting .language-markup}
+```
 channel.basicQos(50);
 ```
 
@@ -389,7 +390,7 @@ consumers:
 
 
 
-``` {.programlisting .language-markup}
+```
 channel.basicQos(100, true);
 ```
 
@@ -520,7 +521,7 @@ client and an already created channel, you can declare
 
 
 
-``` {.programlisting .language-markup}
+```
 channel.queueDeclare("sample_queue", false, false, true, null);
 ```
 
@@ -546,7 +547,7 @@ refer to the RabbitMQ documentation.
 
 
 
-``` {.programlisting .language-markup}
+```
 Map<String, Object> args = new HashMap<String, Object>();
 args.put("x-expires", 5).
 channel.queueDeclare("sample_queue", false, false, false, args)
@@ -573,7 +574,7 @@ following example sets a message TTL for the
 
 
 
-``` {.programlisting .language-markup}
+```
 Map<String, Object> args = new HashMap<String, Object>();
 args.put("x-message-ttl", 120000).
 channel.queueDeclare("sample_queue", false, false, false, args);
@@ -620,7 +621,7 @@ similar to the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 Memory limit set to 3241MB of 8104MB total.
 ```
 
@@ -633,7 +634,7 @@ current setting of the `disk_free_limit` [ ]and[
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl status
 ```
 
@@ -645,7 +646,7 @@ file descriptors, used Erlang processes, and so on:
 
 
 
-``` {.programlisting .language-markup}
+```
 {vm_memory_high_watermark,0.4},
  {vm_memory_limit,3399178649},
  {disk_free_limit,50000000},
@@ -663,7 +664,7 @@ been triggered, the parameter is an empty list:
 
 
 
-``` {.programlisting .language-markup}
+```
 {alarms,[]}
 ```
 
@@ -707,7 +708,7 @@ socket with `socket.setTcpNoDelay(true)`:
 
 
 
-``` {.programlisting .language-markup}
+```
   {nodelay,   true}  
   {sndbuf,    262144},
   {recbuf,    262144}
@@ -724,7 +725,7 @@ example sets the maximum open files handle to `65536`:
 
 
 
-``` {.programlisting .language-markup}
+```
 ulimit -n 65536
 ```
 
@@ -740,7 +741,7 @@ for an eight-core machine):
 
 
 
-``` {.programlisting .language-markup}
+```
 RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS="+A 96"
 ```
 
@@ -845,7 +846,7 @@ you have installed Python and Ant, execute the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 git clone https://github.com/rabbitmq/rabbitmq-codegen
 git clone https://github.com/rabbitmq/rabbitmq-java-client
 cd rabbitmq-java-client
@@ -866,7 +867,7 @@ alternatively):
 
 
 
-``` {.programlisting .language-markup}
+```
 cd build/dist
 runjava.sh com.rabbitmq.examples.PerfTest –help
 ```
@@ -925,7 +926,7 @@ messages from a single producer and binding a single consumer:
 
 
 
-``` {.programlisting .language-markup}
+```
 cd build/dist
 runjava.bat com.rabbitmq.examples.PerfTest -a
 ```
@@ -937,7 +938,7 @@ We can observe the following result:
 
 
 
-``` {.programlisting .language-markup}
+```
 starting consumer #0
 starting producer #0
 time: 1.000s, sent: 23959 msg/s, received: 20884 msg/s, min/avg/max latency: 210
@@ -963,7 +964,7 @@ acknowledgment of each message from the consumer:
 
 
 
-``` {.programlisting .language-markup}
+```
 runjava.bat com.rabbitmq.examples.PerfTest
 ```
 
@@ -974,7 +975,7 @@ We can observe the following result:
 
 
 
-``` {.programlisting .language-markup}
+```
 starting consumer #0
 starting producer #0
 time: 1.000s, sent: 15088 msg/s, received: 11151 msg/s, min/avg/max latency: 262
@@ -1000,7 +1001,7 @@ messages persistent before running the performance measurement:
 
 
 
-``` {.programlisting .language-markup}
+```
 runjava.bat com.rabbitmq.examples.PerfTest -f persistent
 ```
 
@@ -1011,7 +1012,7 @@ We can observe the following result:
 
 
 
-``` {.programlisting .language-markup}
+```
 starting consumer #0
 starting producer #0
 time: 1.004s, sent: 11297 msg/s, received: 6623 msg/s, min/avg/max latency: 3168
@@ -1040,7 +1041,7 @@ single producer and consumer without acknowledgments:
 
 
 
-``` {.programlisting .language-markup}
+```
 runjava.bat com.rabbitmq.examples.PerfTest -a -C 1000000 -D 1000000 -s 4096
 ```
 
@@ -1133,7 +1134,7 @@ can use the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo apt-get update
 sudo apt-get install nagios3 nagios-nrpe-plugin
 ```
@@ -1147,7 +1148,7 @@ the Nagios service is running, execute the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo service nagios3 status
 ```
 
@@ -1162,7 +1163,7 @@ health checks (or write your own if the installed ones are not proper):
 
 
 
-``` {.programlisting .language-markup}
+```
 git clone https://github.com/jamesc/nagios-plugins-rabbitmq
 sudo chown -R nagios:nagios nagios-plugins-rabbitmq/
 mv nagios-plugins-rabbitmq /usr/lib/nagios/plugins/
@@ -1203,7 +1204,7 @@ the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 cd nagios-plugins-rabbitmq/scripts
 ./check_rabbitmq_server
 ```
@@ -1217,7 +1218,7 @@ script in the `commands.cfg` configuration file of Nagios:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo vim /etc/nagios3/commands.cfg
 define command {
  command_name check_rabbitmq_server
@@ -1232,7 +1233,7 @@ You can now restart the service with the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo service nagios3 restart 
 ```
 
@@ -1277,7 +1278,7 @@ command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo apt-get install monit 
 ```
 
@@ -1290,7 +1291,7 @@ process from the localhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 set httpd port 2812 and
 use address localhost
 allow localhost
@@ -1313,7 +1314,7 @@ following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo service monit start
 sudo monit
 ```
@@ -1326,7 +1327,7 @@ Erlang process of RabbitMQ) using the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo monit status
 ```
 
@@ -1337,7 +1338,7 @@ You should see an output similar to the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 Process 'rabbitmq-server'
   status                            Running
   monitoring status                 Monitored
@@ -1373,7 +1374,7 @@ installed):
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo apt-get install apache2
 sudo apt-get install munin
 ```
@@ -1385,7 +1386,7 @@ You must then edit the Munin configuration:
 
 
 
-``` {.programlisting .language-markup}
+```
 vim /etc/munin/munin.conf
 ```
 
@@ -1397,7 +1398,7 @@ Uncomment the following and change the value of the
 
 
 
-``` {.programlisting .language-markup}
+```
 dbdir  /var/lib/munin
 htmldir /var /www/munin
 logdir /var/log/munin
@@ -1414,7 +1415,7 @@ monitoring on the localhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 [MuninMonitor]
     address 127.0.0.1
     use_node_name yes
@@ -1428,7 +1429,7 @@ external connections:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo vim /etc/munin/apache.conf
 Alias /munin /var/www/munin
 <Directory /var/www/munin>
@@ -1447,7 +1448,7 @@ the munin user and group, and finally restart the apache2 and
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo mkdir /var/www/munin
 sudo chown munin:munin /var/www/munin
 sudo service munin-node restart
@@ -1471,7 +1472,7 @@ directory:
 
 
 
-``` {.programlisting .language-markup}
+```
 cd /etc/munin/plugins/
 sudo git clone https://github.com/ask/rabbitmq-munin
 sudo cp rabbitmq-munin/* .
@@ -1485,7 +1486,7 @@ Add the following configuration to the
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo vim /etc/munin/plugin-conf.d/munin-node
 [rabbitmq_connections]
 user root
@@ -1515,7 +1516,7 @@ available from the administrative interface:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo service munin-node restart
 ```
 

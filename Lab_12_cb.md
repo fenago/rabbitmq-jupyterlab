@@ -1,7 +1,8 @@
 
+<img align="right" src="./logo-small.png">
 
-Lab 12. Managing RabbitMQ Error Conditions
--------------------------------------------------------
+Lab. Managing RabbitMQ Error Conditions
+-------------------------------------------
 
 
 In this lab, we will cover the following topics:
@@ -123,7 +124,7 @@ you need to perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     paramvhost {
     value = "/"
         }
@@ -134,7 +135,7 @@ you need to perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     service gmond restart
     ```
     
@@ -229,7 +230,7 @@ the following, we highlight the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     String tmpQueue = channel.queueDeclare().getQueue();
     channel.queueBind(tmpQueue,"amq.rabbitmq.log","#");
     ```
@@ -240,7 +241,7 @@ the following, we highlight the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     String routingKey = envelope.getRoutingKey();
     String message = new String(body);
     System.out.println(routingKey + ": " + message);
@@ -273,7 +274,7 @@ same broker and by aborting it, we get the following output:
 
 
 
-``` {.programlisting .language-markup}
+```
 info: accepting AMQP connection <0.2737.0> (127.0.0.1:54698 -> 127.0.0.1:5672)
 info: accepting AMQP connection <0.2753.0> (127.0.0.1:54699 -> 127.0.0.1:5672)
 warning: closing AMQP connection <0.2737.0> (127.0.0.1:54698 -> 127.0.0.1:5672):
@@ -358,7 +359,7 @@ the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     String tmpQueue = channel.queueDeclare().getQueue();
     channel.queueBind(tmpQueue,"amq.rabbitmq.trace","#");
     ```
@@ -370,7 +371,7 @@ the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     String routingKey = envelope.getRoutingKey();
     String message = new String(body);
     Map<String,Object> headers = properties.getHeaders();
@@ -387,7 +388,7 @@ the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbimqctl trace_on
     ```
     
@@ -399,7 +400,7 @@ the main steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbimqctl trace_off
     ```
     
@@ -486,7 +487,7 @@ can put in action by following these steps.
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ./runjava.sh com.rabbitmq.tools.Tracer
     ```
     
@@ -497,7 +498,7 @@ can put in action by following these steps.
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ./runjava.sh com.rabbitmq.examples.PerfTest -h amqp://localhost:5673 -C 1 -D 1
     ```
     
@@ -547,7 +548,7 @@ using the following code:
 
 
 
-``` {.programlisting .language-markup}
+```
 ./runjava.sh com.rabbitmq.tools.Tracer listenPort connectHost connectPort 
 ```
 
@@ -564,7 +565,7 @@ You can find all `PerfTest` available options using:
 
 
 
-``` {.programlisting .language-markup}
+```
 ./runjava.sh com.rabbitmq.examples.PerfTest --help
 ```
 
@@ -731,7 +732,7 @@ use Wireshark to  trace the AMQP messages:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     yum install wireshark-gnome
     ```
     
@@ -744,7 +745,7 @@ use Wireshark to  trace the AMQP messages:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ./runjava.sh com.rabbitmq.examples.PerfTest -C 1 -D 1
     ```
     
@@ -833,12 +834,7 @@ thanks to the fact that Wireshark includes a very complete AMQP
 dissector.
 
 
-
-
-
-
 ### There\'s more...
-
 
 In case RabbitMQ is configured to use SSL and you want to analyze the
 encrypted traffic, this is possible under some given conditions by
@@ -848,12 +844,7 @@ configuration.
 Find more information at <http://wiki.wireshark.org/SSL>.
 
 
-
-
-
-
 ### See also
-
 
 You can find some references to the Wireshark AMQP dissector at
 <http://wiki.wireshark.org/AMQP>.

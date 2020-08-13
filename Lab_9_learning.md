@@ -1,6 +1,7 @@
+<img align="right" src="./logo-small.png">
 
-Lab 9. Security
-----------------------------
+Lab. Security
+--------------
 
 
 A system is as secure as its weakest component taking the message broker
@@ -12,21 +13,14 @@ The topics covered in this lab are as follows:
 
 
 -   Types of threats
-
 -   Authentication
-
 -   Authorization
-
 -   Secure communication
-
 -   Penetration testing
 
 
-
 Types of threats
-----------------------------------
-
-
+------------------
 
 There  are several aspects in which the security of
 the message broker is affected. RabbitMQ hasn\'t been planned to be
@@ -242,7 +236,7 @@ following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 sudo apt-get install slapd ldap-utils
 ```
 
@@ -259,7 +253,7 @@ same configuration applies to the other operating systems):
 
 
 
-``` {.programlisting .language-markup}
+```
 slappasswd.exe
 ```
 
@@ -272,7 +266,7 @@ we have set an example as the root password, you can see the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 {SSHA}VUCblOSqFJn/L9O2bMTrP/YpGDJyAYYx
 ```
 
@@ -319,7 +313,7 @@ The structure is represented by the following `ldiff` file
 
 
 
-``` {.programlisting .language-markup}
+```
 # This distinguished name (DN) determines the organization
 dn: dc=example,dc=com
 objectClass: top
@@ -353,7 +347,7 @@ Now, you need to import the element definitions from the
 
 
 
-``` {.programlisting .language-markup}
+```
 ldapadd -x -D "cn=organization,dc=example,dc=com" -W –f sample.ldiff
 ```
 
@@ -366,7 +360,7 @@ that we added):
 
 
 
-``` {.programlisting .language-markup}
+```
 ldapdelete  -D "cn=organization,dc=example,dc=com" "cn= Martin,ou=users,dc=example,dc=com" -W
 ```
 
@@ -380,7 +374,7 @@ it on a node:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmq-plugins enable rabbitmq_auth_backend_ldap
 ```
 
@@ -394,7 +388,7 @@ to apply the same configuration over all the nodes in a cluster):
 
 
 
-``` {.programlisting .language-markup}
+```
 {auth_backends, [rabbit_auth_backend_ldap]}
 ```
 
@@ -409,7 +403,7 @@ the configuration file:
 
 
 
-``` {.programlisting .language-markup}
+```
 {servers, ["localhost"]},{user_dn_pattern, "cn=${username},ou=users,dc=example,dc=com"}{tag_queries, [{administrator, {constant, false}},{management,    {constant, true}}]}
 ```
 
@@ -437,7 +431,7 @@ the example that we used earlier to configure our root LDAP password):
 
 
 
-``` {.programlisting .language-markup}
+```
 ldappasswd -D "cn=organization,dc=example,dc=com" "cn=Martin,ou=users,dc=example,dc=com" –W -S
 ```
 
@@ -452,7 +446,7 @@ follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 ldapwhoami -vvv -D "cn=Martin,ou=users,dc=example,dc=com" -x -w example
 ```
 
@@ -463,7 +457,7 @@ You should see the following if the test succeeds:
 
 
 
-``` {.programlisting .language-markup}
+```
 dn:cn=Martin,ou=users,dc=example,dc=com
 Result: Success (0)
 ```
@@ -480,7 +474,7 @@ that the LDAP user is not allowed to access the management console):
 
 
 
-``` {.programlisting .language-markup}
+```
 HTTP access denied: user 'Martin' - Not management user
 ```
 
@@ -658,7 +652,7 @@ RabbitMQ. The following example creates the test vhost using the
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl add_vhost test
 ```
 
@@ -673,7 +667,7 @@ the two users:
 
 
 
-``` {.programlisting .language-markup}
+```
 ## guest user
 dn: cn=guest,ou=users,dc=example,dc=com
 objectclass: inetOrgPerson
@@ -699,7 +693,7 @@ can execute the following set of commands:
 
 
 
-``` {.programlisting .language-markup}
+```
 ldapadd -x -D "cn=organization,dc=example,dc=com" -W –f users.ldiff
 ldappasswd -D "cn=organization,dc=example,dc=com" "cn=guest,ou=users,dc=example,dc=com" –W –S
 ldappasswd -D "cn=organization,dc=example,dc=com" "cn=Subscriber,ou=users,dc=example,dc=com" –W –S
@@ -713,7 +707,7 @@ entry for the `test` vhost (`vhosts.ldiff`):
 
 
 
-``` {.programlisting .language-markup}
+```
 ## Example.com vhosts
 dn: ou=vhosts,dc=example,dc=com
 ou: vhosts
@@ -733,7 +727,7 @@ Execute the following in order to import the preceding entries:
 
 
 
-``` {.programlisting .language-markup}
+```
 ldapadd -x -D "cn=organization,dc=example,dc=com" -W –f vhosts.ldiff
 ```
 
@@ -750,7 +744,7 @@ section in your RabbitMQ configuration file):
 
 
 
-``` {.programlisting .language-markup}
+```
 {vhost_access_query,    {exists, "cn=${vhost},ou=vhosts,dc=example,dc=com"}},
 {resource_access_query,
    {for, [ 

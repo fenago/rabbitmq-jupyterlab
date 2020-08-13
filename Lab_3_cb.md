@@ -1,6 +1,7 @@
 
+<img align="right" src="./logo-small.png">
 
-Lab 3. Managing RabbitMQ
+Lab. Managing RabbitMQ
 -------------------------------------
 
 
@@ -85,7 +86,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl list_vhosts
     ```
     
@@ -95,7 +96,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl add_vhost book_orders
     ```
     
@@ -104,7 +105,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl list_exchanges -p book_orders
     ```
     
@@ -113,7 +114,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl list_permissions
     rabbitmqctl list_permissions -p book_orders
     ```
@@ -124,7 +125,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl set_permissions guest .* .* .* -p book_orders
     ```
     
@@ -133,7 +134,7 @@ To create a new  vhost, perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     factory.setVirtualHost("book_orders");
     ```
     
@@ -215,7 +216,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl add_user stat_sender password1
     rabbitmqctl add_user stat_receiver password2
     ```
@@ -225,7 +226,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl set_permissions stat_sender "stat_exchange.*""stat_.*" "^$"
     rabbitmqctl set_permissions stat_receiver "stat_.*""stat_queue_.*" "(stat_exchange_.*)|(stat_queue_.*)"
     ```
@@ -236,7 +237,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     factory.setUsername("stat_sender");
     factory.setPassword("password1");
     ```
@@ -246,7 +247,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     channel.exchangeDeclare(...);
     channel.basicPublish(...);
     ```
@@ -257,7 +258,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     factory.setUsername("stat_receiver");
     factory.setPassword("password2");
     ```
@@ -267,7 +268,7 @@ permissions as well as how to use them:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     channel.exchangeDeclare(...);
     channel.queueDeclare(...);
     channel.queueBind(...);
@@ -292,7 +293,7 @@ to assign permission to them with the command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl set_permissions <username> <conf> <write> <read>
 ```
 
@@ -395,7 +396,7 @@ For example, to assign the administrator tag to a user, use the command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl set_user_tags username administrator
 ```
 
@@ -470,7 +471,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     mkdir testca
     cd testca
     mkdir certs private
@@ -489,7 +490,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl req -x509 -config openssl.cnf -newkeyrsa:2048 -days 365 -out cacert.pem -outform PEM -subj /CN=MyTestCA/ -nodes
     openssl x509 -in cacert.pem -out cacert.cer -outform DER
     ```
@@ -500,7 +501,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl genrsa -out key.pem 2048
     ```
     
@@ -509,7 +510,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl req -new -key key.pem -out req.pem -outform PEM -subj /CN=$(hostname)/O=server/ -nodes
     ```
     
@@ -519,7 +520,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl ca -config openssl.cnf -in ../server/req.pem –out ../server/cert.pem -notext -batch –extensions server_ca_extensions
     ```
     
@@ -531,7 +532,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     /usr/local/certificates/testca/cacert.pem
     /usr/local/certificates/server/cert.pem
     /usr/local/certificates/server/key.pem
@@ -544,7 +545,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     [
     {rabbit, [
     {ssl_listeners, [5671]},
@@ -563,7 +564,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl stop
     rabbitmq-server–detached.
     ```
@@ -577,7 +578,7 @@ configure the server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost(hostname);
     factory.setPort(5671);
@@ -637,7 +638,7 @@ should be able to find a line as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 started SSL Listener on [::]:5671
 ```
 
@@ -658,7 +659,7 @@ factory:
 
 
 
-``` {.programlisting .language-markup}
+```
 factory.setPort(5671);
 factory.useSslProtocol();
 ```
@@ -732,7 +733,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     cp –rp ../Recipe03/certificates/testca .
     cp –rp ../Recipe03/certificates/server .
     ```
@@ -744,7 +745,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl genrsa -out key.pem 2048
     ```
     
@@ -753,7 +754,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl req -new -key key.pem -out req.pem -outform PEM 
     -subj /CN=$(hostname)/O=client/ -nodes
     ```
@@ -763,7 +764,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl ca -config openssl.cnf -in ../client/req.pem 
     -out ../client/cert.pem -notext -batch -extensions client_ca_extensions
     ```
@@ -775,7 +776,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     openssl pkcs12 -export -out keycert.p12 -in cert.pem 
     -in keykey.pem -passout pass:client1234passwd
     ```
@@ -787,7 +788,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     keytool -importcert -alias server001 -file server/cert.pem -keystore keystore/rabbit.jks -keypass passwd1234
     ```
     
@@ -797,7 +798,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     {fail_if_no_peer_cert,true}
     ```
     
@@ -806,7 +807,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl stop
     rabbitmq-server –detached
     ```
@@ -817,7 +818,7 @@ RabbitMQ server:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     char[] keyPassphrase = "client1234passwd".toCharArray();
     KeyStoreks = KeyStore.getInstance("PKCS12");
     ks.load(newFileInputStream("certificates/client/keycert.p12"), keyPassphrase);
@@ -873,7 +874,7 @@ the following call:
 
 
 
-``` {.programlisting .language-markup}
+```
 factory.useSslProtocol(c);
 ```
 
@@ -927,7 +928,7 @@ the  following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmq-plugins enable rabbitmq_management
     ```
     
@@ -1157,7 +1158,7 @@ script to monitor RabbitMQ using the JSON API:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     import sys
     import urllib2,base64
     import json
@@ -1169,7 +1170,7 @@ script to monitor RabbitMQ using the JSON API:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     urllib2.Request("http://"+rabbitmqhost+":15672/api/nodes")
     urllib2.Request("http://"+rabbitmqhost+":15672/api/connections")
     urllib2.Request("http://"+rabbitmqhost+":15672/api/aliveness-test/%2f")
@@ -1180,7 +1181,7 @@ script to monitor RabbitMQ using the JSON API:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     json.load(urllib2.urlopen(request));
     ```
     
@@ -1190,7 +1191,7 @@ script to monitor RabbitMQ using the JSON API:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     if error_message != "":
       sendAlarmStatus(error_message);
     ```
@@ -1221,7 +1222,7 @@ The script needs to authenticate the API using the code:
 
 
 
-``` {.programlisting .language-markup}
+```
 base64.encodestring('%s:%s' % ('guest', 'guest'))request.add_header("Authorization", "Basic %s" % base64string);
 ```
 
@@ -1268,7 +1269,7 @@ can be invoked from a shell script, for example:
 
 
 
-``` {.programlisting .language-markup}
+```
 ./rabbitmqadmin –f raw_json list nodes 
 ```
 
@@ -1351,7 +1352,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     tomcat-coyote   // needed for websockets
     tomcat-servlet-api// needed for websockets
     tomcat-catalina// needed for websockets
@@ -1376,7 +1377,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     LogListenerimplements MessageListener. 
     ```
     
@@ -1386,7 +1387,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     container.setConnectionFactory(rmq.getConnectionFactory());
     ...
     container.start();
@@ -1397,7 +1398,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ws = new WebSocket('ws://' host':8080/rmq/websocket');
     ```
     
@@ -1406,7 +1407,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     ws.onmessage = function(message){..} 
     ```
     
@@ -1416,7 +1417,7 @@ application to monitor the RabbitMQ logs:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     $("#tablebody").prepend("<tr><td>"+message.data+ "</td></tr>");
     ```
     
@@ -1471,7 +1472,7 @@ an event:
 
 
 
-``` {.programlisting .language-markup}
+```
 public void onMessage(Message message) {..}
 ```
 
@@ -1483,7 +1484,7 @@ The message is broadcasted to the connected browser with a
 
 
 
-``` {.programlisting .language-markup}
+```
 for(ClientMessage item: clients){
   CharBuffer buffer = CharBuffer.wrap(new String(message.getBody()) );
 item.myoutbound.writeTextMessage(buffer);

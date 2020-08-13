@@ -1,25 +1,20 @@
 
+<img align="right" src="./logo-small.png">
 
 Lab 8. Performance Tuning for RabbitMQ
----------------------------------------------------
+----------------------------------------
 
 
 In this lab we will cover:
 
 
 -   Multithreading and queues
-
 -   System tuning
-
 -   Improving bandwidth
-
 -   Using different distribution tools
 
-
-
 Introduction
-------------------------------
-
+--------------
 
 
 There are no standard RabbitMQ tuning guidelines because different
@@ -132,7 +127,7 @@ RabbitMQ, you can perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     rabbitmqctl set_vm_memory_high_watermark 0.6 
     ```
     
@@ -141,7 +136,7 @@ RabbitMQ, you can perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     [{rabbit, [{vm_memory_high_watermark, 0.6}]}].
     ```
     
@@ -164,7 +159,7 @@ RabbitMQ, you can perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     [
       {rabbit, [{hipe_compile, true}]}
     ].
@@ -178,7 +173,7 @@ RabbitMQ, you can perform the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     =WARNING REPORT==== 6-Oct-2013::00:38:23 ===Not HiPE compiling: HiPE not found in this Erlang installation.
     ```
     
@@ -246,7 +241,7 @@ check if your local Erlang installation has it by just invoking the
 
 
 
-``` {.programlisting .language-markup}
+```
 # erlErlang R15B03 (erts-5.9.3.1) [source] [64-bit] [smp:2:2] [async-threads:0] [hipe] [kernel-poll:false]
 
 EshellV5.9.3.1  (abort with ^G)1>
@@ -266,7 +261,7 @@ Erlang-site is downloaded, you can add the HiPE module by installing:
 
 
 
-``` {.programlisting .language-markup}
+```
 apt-get install erlang-base-hipe
 ```
 
@@ -302,7 +297,7 @@ don\'t see any message as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 =WARNING REPORT==== 6-Oct-2013::00:38:23 ===Not HiPE compiling: HiPE not found in this Erlang installation.
 ```
 
@@ -371,7 +366,7 @@ consumer by performing the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     threadNumber = Integer.valueOf(args[0]);
     prefetchcount = Integer.valueOf(args[1]);
     autoAck = (Integer.valueOf(args[2]) != 0);
@@ -386,7 +381,7 @@ consumer by performing the following steps:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     internalChannel.basicQos(prefetch_count);
     internalChannel.basicConsume(Constants.queue, autoAck..
     ```
@@ -438,7 +433,7 @@ Well firstly, maven will compile using the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 mvn clean compile assembly:single
 ```
 
@@ -454,7 +449,7 @@ MacBook pro Dual Core, 4 GB RAM using the following parameters:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     java -cp rmqAckTest.jar rmqexample.ProducerMain 1 100000 64000
     ```
     
@@ -463,7 +458,7 @@ MacBook pro Dual Core, 4 GB RAM using the following parameters:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     java -cp rmqAckTest.jar rmqexample.ConsumerMain 2 50 0 0
     java -cp rmqAckTest.jar rmqexample.ConsumerMain 2 1 0 0
     ```
@@ -528,7 +523,7 @@ When noAck is set, you must not call the following method:
 
 
 
-``` {.programlisting .language-markup}
+```
 internalChannel.basicAck(envelope.getDeliveryTag(), false);
 ```
 
@@ -540,7 +535,7 @@ Try to execute the test with the third parameter set to `1`
 
 
 
-``` {.programlisting .language-markup}
+```
 java -cp rmqAckTest.jar rmqexample.ConsumerMain 1 1 1 0
 ```
 
@@ -666,7 +661,7 @@ The tests performed are as follows:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     java -cp rmqAckTest.jar rmqexample.ProducerMain 1 100000 640
     ```
     
@@ -675,7 +670,7 @@ The tests performed are as follows:
 
 
 
-    ``` {.programlisting .language-markup}
+    ```
     java -cp rmqAckTest.jar rmqexample.ConsumerMain 1 0 0 0
     ```
     

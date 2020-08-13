@@ -1,6 +1,7 @@
 
+<img align="right" src="./logo-small.png">
 
-Lab 3. Administration, Configuration, and Management
+Lab. Administration, Configuration, and Management
 -----------------------------------------------------------------
 
 
@@ -72,7 +73,7 @@ command from the installation folder of RabbitMQ:
 
 
 
-``` {.programlisting .language-markup}
+```
     tree /A
 ```
 
@@ -200,7 +201,7 @@ the following from the command line:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py help
 rabbitmqadmin.py help subcommands
 ```
@@ -224,7 +225,7 @@ following commands:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl add_user sam d1v
 rabbitmqctl add_user jim tester
 ```
@@ -239,7 +240,7 @@ management console you will receive a login failure. In order to make
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat set_user_tags jim administrator
 ```
 
@@ -260,7 +261,7 @@ in the broker instance:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat list_users
 ```
 
@@ -272,7 +273,7 @@ If you want to change the password for `sam` to
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat change_password jim t1ster
 ```
 
@@ -284,7 +285,7 @@ following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat delete_user jim
 ```
 
@@ -297,7 +298,7 @@ administrator:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat set_user_tags sam administrator
 ```
 
@@ -319,7 +320,7 @@ example creates the `chat` and `events` vhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat add_vhost chat
 rabbitmqctl.bat add_vhost events
 ```
@@ -345,7 +346,7 @@ broker instance:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat list_vhosts
 ```
 
@@ -357,7 +358,7 @@ vhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat delete_vhost events
 ```
 
@@ -383,7 +384,7 @@ vhost to the user `jim`:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat set_permissions –p chat jim ".*" ".*" ".*"
 ```
 
@@ -397,7 +398,7 @@ script as follows:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare permission vhost=chat user=sam configure=.* write=.* read=.*
 ```
 
@@ -411,7 +412,7 @@ permissions in the broker with the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat list_permissions
 ```
 
@@ -423,7 +424,7 @@ this purpose:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py list permissions
 ```
 
@@ -435,7 +436,7 @@ You can delete the permission given to the user `sam` for the
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat clear_permissions -p chat sam
 ```
 
@@ -447,7 +448,7 @@ this purpose:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py delete permission vhost=chat user=sam
 ```
 
@@ -461,7 +462,7 @@ command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin -u sam -p d1v list vhosts
 ```
 
@@ -483,7 +484,7 @@ vhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare exchange name=logs type=fanout
 ```
 
@@ -497,7 +498,7 @@ that has administrator permissions for the vhost):
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare permission vhost=chat user=guest
 configure=.* write=.* read=.*rabbitmqadmin.py declare -V chat exchange name=logs type=fanout
 ```
@@ -511,7 +512,7 @@ as exchange durability. To delete the `logs` exchange from the
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py -V chat delete exchange name=logs
 ```
 
@@ -522,7 +523,7 @@ To list all exchanges in the `chat` vhost, you can issue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py -V chat list exchanges
 ```
 
@@ -534,7 +535,7 @@ issue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py list exchanges
 ```
 
@@ -556,7 +557,7 @@ default vhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare queue name=error_logs durable=false
 ```
 
@@ -568,7 +569,7 @@ The following example creates a queue with the same name in the
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py -V chat declare queue name=error_logs
 ```
 
@@ -580,7 +581,7 @@ vhost, you can issue the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py -V chat delete queue name=error_logs
 ```
 
@@ -591,7 +592,7 @@ To list all queues in the default domain, you can issue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py list queues
 ```
 
@@ -614,7 +615,7 @@ vhost:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare binding source=logs destination=error_logs
 ```
 
@@ -629,7 +630,7 @@ finally clear the `error_logs` queue from any messages:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py publish exchange=logs routing_key= payload="new log"
 rabbitmqadmin.py get queue=error_logs
 rabbitmqadmin.py purge queue name=error_logs
@@ -670,7 +671,7 @@ policy:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl  set_policy max-queue-len "error_logs" "{""max-length-bytes"" : 200000}" apply-to queue 
 ```
 
@@ -681,7 +682,7 @@ You can also use the rabbitmqadmin.py script for this purpose:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare policy name=max-queue-len pattern=error_logs definition="{""max-length-bytes"":200000}" apply-to=queues
 ```
 
@@ -694,7 +695,7 @@ policy):
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare policy name=max-queue-len pattern=error_logs definition="{""max-length"":200000}" apply-to=queues
 ```
 
@@ -709,7 +710,7 @@ delete the policy you can issue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqctl.bat clear_policy max-queue-len
 ```
 
@@ -720,7 +721,7 @@ Alternatively you can issue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py delete policy name=max-queue-len
 ```
 
@@ -737,7 +738,7 @@ default vhost to three seconds, you can apply the following policy:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare policy name=ttl pattern=.* definition="{""message-ttl"":3000}" apply-to=queues
 ```
 
@@ -758,7 +759,7 @@ following example sets the queue TTL for all queues starting with the
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare policy name=queue-ttl          pattern=response.* definition="{""expires"":600000}" apply-to=queues
 ```
 
@@ -783,7 +784,7 @@ it as a dead-letter exchange to the `error_logs` queue:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare exchange name=logs_dlx type=fanoutrabbitmqadmin.py declare policy name=ttl                pattern="^error_logs$" definition="{""dead-letter-exchange"": ""logs_dlx"", ""message-ttl"":3000}" apply-to=queues
 ```
 
@@ -798,7 +799,7 @@ policy. You can list all policies with the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py list policies
 ```
 
@@ -814,7 +815,7 @@ we created earlier, issue the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py delete policy name=max-queue-len
 ```
 
@@ -842,7 +843,7 @@ The following example can be used to test the preceding scenario:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py declare queue name=error_logs_dlx
 rabbitmqadmin.py declare binding source=logs_dlx        destination=error_logs_dlx
 rabbitmqadmin.py publish exchange=logs routing_key=     payload="dlx message"
@@ -857,7 +858,7 @@ the end):
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py get queue=error_logs_dlx
 rabbitmqadmin.py purge queue name=error_logs   
 ```
@@ -952,7 +953,7 @@ directory):
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py export broker.json
 ```
 
@@ -965,7 +966,7 @@ broker:
 
 
 
-``` {.programlisting .language-markup}
+```
 {  
    "rabbit_version":"3.4.4",
    "users":[  
@@ -995,7 +996,7 @@ To import back the configuration, you can use the following command:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmqadmin.py import broker.json
 ```
 
@@ -1041,7 +1042,7 @@ broker by issuing:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmq-plugins.bat list
 ```
 
@@ -1054,7 +1055,7 @@ folder. In order to enable it, you can issue the following:
 
 
 
-``` {.programlisting .language-markup}
+```
 rabbitmq-plugins.bat enable gen_smtp
 ```
 
@@ -1152,7 +1153,7 @@ size:
 
 
 
-``` {.programlisting .language-markup}
+```
 [
  {rabbit,
   [
@@ -1208,7 +1209,7 @@ JSON utility in Java:
 
 
 
-``` {.programlisting .language-markup}
+```
 <dependency><groupId>com.sun.jersey</groupId><artifactId>jersey-client</artifactId><version>1.19</version></dependency>
 <dependency>
    <groupId>org.json</groupId>
@@ -1224,7 +1225,7 @@ Here is the class for the ComponentFinder utility:
 
 
 
-``` {.programlisting .language-markup}
+```
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -1254,7 +1255,7 @@ purpose:
 
 
 
-``` {.programlisting .language-markup}
+```
     public static void main(String[] args) {
 
         Scanner scanner = null;
@@ -1299,7 +1300,7 @@ expression:
 
 
 
-``` {.programlisting .language-markup}
+```
 private static void filterResult(JSONArray jsonResult,                 String pattern) {
         // filter the result based on the pattern
         for (int index = 0; index < jsonResult.length();                 index++) {
