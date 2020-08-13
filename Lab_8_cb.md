@@ -38,13 +38,11 @@ Very often the application needs to be optimized on the client side:
 In both cases  messaging is a perfect fit. In order
 to optimize the network transfer rate, the AMQP standard prescribes that
 messages are transferred in bunches, and then consumed one by one by the
-client (refer to [Lab
-1](https://subscription.packtpub.com/book/application_development/9781849516501/1){.link},
-[*Working with AMQP*]{.emphasis}).
+client.
 
 RabbitMQ allows multithreaded applications to consume messages
 efficiently; this is covered in the [*Multithreading and
-queues*]{.emphasis} recipe.
+queues*] recipe.
 
 Another frequent use case is when RabbitMQ is at the foundation of a
 distributed application serving a large number of clients. In this case,
@@ -313,14 +311,7 @@ don\'t see any message as follows:
 ### Tip
 
 By default, on Linux RabbitMQ, log files are placed in
-`/var/log/rabbitmq`. You can find more information in [Lab
-12](https://subscription.packtpub.com/book/application_development/9781849516501/12){.link},
-[*Managing RabbitMQ Error Conditions*]{.emphasis}.
-
-
-
-
-
+`/var/log/rabbitmq`.
 
 
 ### There\'s more...
@@ -368,7 +359,7 @@ You need Java 1.7 or higher and Apache maven.
 
 
 We skip the producer code because it\'s the same one shown in the
-[*Multithreading and queues*]{.emphasis} recipe. We still use the
+[*Multithreading and queues*] recipe. We still use the
 `ReliableClient` class as the base class. Let\'s see the
 consumer by performing the following steps:
 
@@ -431,12 +422,6 @@ client-side parameters to improve the performance and the bandwidth.
 
 To set the  prefetch, use
 `basicQos(prefetch_count)` (refer to step 3).
-
-We have already seen the `channel QoS` parameter in [Lab
-1](https://subscription.packtpub.com/book/application_development/9781849516501/1){.link},
-Working with AMQP, [*Distributing Messages to Many
-Consumers*]{.emphasis}, where the messages are acknowledged one by one,
-in order to correctly load balance the messages.
 
 The prefetch count is the maximum number of unacknowledged messages: a
 large value will let the client prefetch many messages in advance
@@ -624,7 +609,7 @@ You need Java 1.7 or higher and Apache Maven.
 ### How to do it...
 
 
-You can use the source code from the [*Improving bandwidth*]{.emphasis}
+You can use the source code from the [*Improving bandwidth*]
 recipe, then you have to create a RabbitMQ cluster with two nodes.
 
 
@@ -647,10 +632,7 @@ That\'s not as bad as it might seem. On one side, the distribution
 toward the nodes of the cluster is performed in parallel, so the
 overhead does not grow linearly with the number of nodes. On the other
 side, the replication is usually limited to two or three replicas at the
-most, as we saw in [Lab
-7](https://subscription.packtpub.com/book/application_development/9781849516501/7){.link},
-[*Developing High-availability Applications*]{.emphasis}.
-
+most.
 
 We performed a test using the following environment:
 
@@ -671,12 +653,9 @@ We performed a test using the following environment:
 The tests performed are as follows:
 
 
--   [**Test 1**]: Create a mirror (as we saw in [Lab
-    7](https://subscription.packtpub.com/book/application_development/9781849516501/7){.link},
-    [*Developing High-availability Applications*]{.emphasis}) using the
+-   [**Test 1**]: Create a mirror using the
     configuration, as shown in the following screenshot:
 
-    
     ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_cookbook/6501OS_08_05.jpg)
     
 

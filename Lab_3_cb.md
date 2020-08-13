@@ -644,7 +644,7 @@ started SSL Listener on [::]:5671
 
 Furthermore, by opening the management plugin from a browser, you will
 be able to get similar information (see the [*Managing RabbitMQ from a
-browser*]{.emphasis} recipe), as shown in the following screenshot:
+browser*] recipe), as shown in the following screenshot:
 
 
 ![](https://raw.githubusercontent.com/fenago/rabbitmq-jupyterlab/master/images/images_cookbook/6501OS_03_09.jpg)
@@ -1001,7 +1001,7 @@ the AMQP broker and the various installed plugins (web contexts):
 At `http://localhost:15672/api/`, you can get access to the
 HTTP API. By using the HTTP APIs, the users can create a custom console
 as we are going to see in the recipe [*Developing Python applications to
-monitor RabbitMQ*]{.emphasis}.
+monitor RabbitMQ*].
 
 
 
@@ -1139,7 +1139,7 @@ can find the source code at `Lab03/Recipe07`.
 
 
 You need Python 2.7+ and the management plugin enabled (as we have seen
-in the [*Managing RabbitMQ from a browser*]{.emphasis} recipe).
+in the [*Managing RabbitMQ from a browser*] recipe).
 
 
 
@@ -1297,10 +1297,7 @@ Developing your own web applications to monitor RabbitMQ
 In this recipe we\'ll show you  how to create a
 custom web application to monitor the RabbitMQ logs. In order to check
 the logs, you can bind a queue to the `amq.rabbitmq.log`
-exchange, as we will see in [Lab
-12](https://subscription.packtpub.com/book/application_development/9781849516501/12){.link},
-[*Managing RabbitMQ Error Conditions*]{.emphasis}, with much more
-details.
+exchange.
 
 You can find the source code for this recipe in
 `Lab03/Recipe08`.

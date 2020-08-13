@@ -108,10 +108,7 @@ The `log` directory  contains the RabbitMQ
 log files and the Erlang [**SASL**] ([**System Application
 Support Libraries**]) log files, not to be confused with
 [**SASL**] ([**Simple Authentication and Security
-Layer**]), for which RabbitMQ also provides support, covered in
-[Lab
-9](https://subscription.packtpub.com/book/application_development/9781783984565/9){.link},
-[*Security*]{.emphasis}. Erlang SASL provides support for topics such as
+Layer**]), for which RabbitMQ also provides support. Erlang SASL provides support for topics such as
 error logging, alarm handling, and overload regulation.
 
 The `plugins` directory provides packages for the RabbitMQ

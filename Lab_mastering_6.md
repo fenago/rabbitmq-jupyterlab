@@ -28,7 +28,7 @@ provides support for the following:
 
 We can manage the RabbitMQ server using command-line tool called
 `rabbitmqctl` using a plugin called [*Management
-Plugin*]{.emphasis}, that is provided by default from RabbitMQ and
+Plugin*], that is provided by default from RabbitMQ and
 accessing RabbitMQ using the REST APIs. Therefore, our lab is
 designed with the following topics:
 
@@ -160,10 +160,8 @@ Dashboard of Management Web Interface
 In the dashboard interface, you  can view the
 RabbitMQ server statistics and information related to current 
 connections, channels, exchanges, queues, and consumers.
-Additionally, the dashboard can be used for monitoring; we will cover
-this in [Lab
-7](https://subscription.packtpub.com/book/application_development/9781783981526/7){.link},
-[*Monitoring*]{.emphasis}. Moreover, you have a menu on the header side
+Additionally, the dashboard can be used for monitoring.
+Moreover, you have a menu on the header side
 that redirects to the detailed part of each module.
 
 After clicking on the [**Connections**] tab on the menu, you

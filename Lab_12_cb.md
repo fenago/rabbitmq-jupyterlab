@@ -38,16 +38,16 @@ We will see how to use these features in the first three recipes.
 Sometimes, there are problems that prevent RabbitMQ from starting. In
 this case, it\'s mandatory to fix the problem directly on the server
 machine where the issue persists, and to reset the broker. We\'ll see
-this in the [*What to do when RabbitMQ fails to restart*]{.emphasis}
+this in the [*What to do when RabbitMQ fails to restart*]
 recipe.
 
 However, debugging messages is a part of application development too. In
 this case, we need to know the exact information exchanged between
 RabbitMQ and its clients. It is possible to use a proxy built-in tool,
 part of the Java client API (see the [*Debugging RabbitMQ\'s
-messages*]{.emphasis} recipe) or to use an advanced network monitor to
+messages*] recipe) or to use an advanced network monitor to
 examine the traffic, as we will see in the [*Debugging using
-Wireshark*]{.emphasis} recipe.
+Wireshark*] recipe.
 
 
 
@@ -683,7 +683,7 @@ Debugging using Wireshark
 
 
 
-In the [*Debugging RabbitMQ\'s messages*]{.emphasis} recipe, we have
+In the [*Debugging RabbitMQ\'s messages*] recipe, we have
 seen how to trace messages going to/from RabbitMQ.
 
 However, it is not always possible, or desirable, to stop a running
@@ -696,7 +696,7 @@ possible.
 ### Tip
 
 However, it\'s possible to activate the firehose tracer as seen in the
-recipe, [*Tracing RabbitMQ\'s ongoing activity*]{.emphasis}.
+recipe, [*Tracing RabbitMQ\'s ongoing activity*].
 
 
 Wireshark is a free network analysis tool that has the capability to

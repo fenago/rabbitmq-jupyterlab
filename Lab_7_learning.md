@@ -429,10 +429,7 @@ improved performance. Another way that the performance might be affected
 based on your scenario would be using a custom backing store that allows
 you to store messages in a manner different from the default backing
 store that writes them to the disk. This can either improve or decrease
-the performance of your message broker. In [Lab
-10](https://subscription.packtpub.com/book/application_development/9781783984565/10){.link},
-[*Internals*]{.emphasis} we will demonstrate how to write a RabbitMQ
-plugin that uses a custom database as a message store for RabbitMQ.
+the performance of your message broker.
 
 For more  information about message persistence and
 backing stores used in RabbitMQ, you can review the following posts from
