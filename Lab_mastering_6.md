@@ -11,18 +11,12 @@ provides support for the following:
 
 
 -   Adding, updating, and showing users, virtual hosts, and permissions
-
 -   Declaring, listing, and deleting exchanges, queues, and bindings
-
 -   Sending and receiving messages
-
 -   Monitoring the queue length, message rates globally and per channel,
     data rates per connection, and so forth
-
 -   Exporting/importing object definitions to JSON
-
 -   Forcing close connections
-
 -   Purging queues
 
 
@@ -34,12 +28,38 @@ designed with the following topics:
 
 
 -   Management via a command line
-
 -   Management via a web plugin
-
 -   Management via a REST API
 
+#### Start RabbitMQ Server
+Run following command in the terminal to start rabbitmq server:
 
+`service rabbitmq-server start`
+
+`rabbitmqctl status`
+
+#### RabbitMQ UI
+
+Run following command in the terminal one by one to create rabbitmq user and allow UI access:
+
+```
+rabbitmqctl add_user fenago fenago
+
+rabbitmqctl set_user_tags fenago administrator
+
+rabbitmqctl set_permissions -p / fenago ".*" ".*" ".*"
+```
+
+
+`<host-ip>:<port>:15672`
+
+**Username:** fenago
+
+**Password:** fenago
+
+
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
 Management via a command line
 -----------------------------------------------
